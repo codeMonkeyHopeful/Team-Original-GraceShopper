@@ -16,13 +16,6 @@ const Product = db.define("product", {
       notEmpty: true
     }
   },
-  product_line_id: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    }
-  },
   category: {
     type: Sequelize.TEXT,
     allowNull: false,
@@ -68,13 +61,6 @@ const Product = db.define("product", {
   image_url: {
     type: Sequelize.STRING,
     defaultValue: "https://picsum.photos/200" //will generate a random image on ever refresh of the page
-  },
-  brand_id: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    }
   }
 });
 

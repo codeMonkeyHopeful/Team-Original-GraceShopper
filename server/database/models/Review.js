@@ -1,21 +1,21 @@
-const Sequelize = require("sequelize");
-const db = require("../db");
+const Sequelize = require('sequelize');
+const db = require('../db');
 
-const Review = db.define("review", {
+const Review = db.define('review', {
   rating: {
     type: Sequelize.NUMBER,
     allowNull: false,
     validate: {
-      notEmty: true
-    }
+      notEmty: true,
+    },
   },
   description: {
     type: Sequelize.TEXT,
     allowNull: false,
     validate: {
-      notEmpty: true
-    }
-  }
+      notEmpty: true,
+    },
+  },
 });
 
 module.exports = Review;
