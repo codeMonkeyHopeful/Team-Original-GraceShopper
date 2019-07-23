@@ -5,29 +5,40 @@ const Profile = db.define('profile', {
     first_name : {
         type: Sequelize.STRING,
         allowNull: false,
+        validate: {
+            notEmpty: true,
+        },
     },
     last_name: {
         type: Sequelize.STRING,
         allowNull: false,
+        validate: {
+            notEmpty: true,
+        },
     },
     street_address: {
         type: Sequelize.STRING,
-        allowNull: false,
+        validate: {
+            notEmpty: true,
+        },
     },
     city: {
         type: Sequelize.STRING,
-        allowNull: false,
+        validate: {
+            notEmpty: true,
+        },
     },
     state: {
         type: Sequelize.STRING,
-        allowNull: false,
         validate: {
             isIn: [/* abbrevs for all 50 states */]
         }
     },
     zipcode: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        validate: {
+            notEmpty: true,
+        },
     },
     phone_number: {
         type: Sequelize.INTEGER,
