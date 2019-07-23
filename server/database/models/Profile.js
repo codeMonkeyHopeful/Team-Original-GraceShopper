@@ -1,5 +1,8 @@
-const Sequelize = require('sequelize');
-const db = require('../db');
+
+const Sequelize = require("sequelize");
+const db = require("../db");
+const states = require("../utils/states_abbrevs");
+
 
 const Profile = db.define('profile', {
   first_name: {
@@ -27,15 +30,14 @@ const Profile = db.define('profile', {
     validate: {
       notEmpty: true,
     },
+
+   state: {
+        type: Sequelize.STRING,
+        validate: {
+            isIn: [states]
+        }
   },
-  state: {
-    type: Sequelize.STRING,
-    validate: {
-      isIn: [
-        /* abbrevs for all 50 states */
-      ],
-    },
-  },
+
   zipcode: {
     type: Sequelize.INTEGER,
     validate: {
