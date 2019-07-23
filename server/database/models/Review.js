@@ -3,10 +3,12 @@ const db = require('../db');
 
 const Review = db.define('review', {
   rating: {
-    type: Sequelize.NUMBER,
+    type: Sequelize.DECIMAL(2, 1),
     allowNull: false,
     validate: {
       notEmty: true,
+      min: 1,
+      max: 5,
     },
   },
   description: {
