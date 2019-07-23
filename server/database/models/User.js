@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-//make a model
-
-const User = db.define('Profile');
-=======
 const Sequelize = require('sequelize');
 const db = require('./../db');
 
@@ -36,4 +31,3 @@ const User = db.define('user', {
 });
 
 // add password hashing hook
->>>>>>> basic user model
