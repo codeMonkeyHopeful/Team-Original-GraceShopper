@@ -1,8 +1,8 @@
 // seed shit here
-const { db, Profile, Product, Review, User } = require('../index.js');
+const { db, Profile, Product, Review, User } = require('../../index');
 
-const usersSeed = require('./seed/data/users');
-const userCreator = require('./seed/creators/userCreator');
+const usersSeed = require('./data/users');
+const userCreator = require('./creators/userCreator');
 
 const product = [
   {
