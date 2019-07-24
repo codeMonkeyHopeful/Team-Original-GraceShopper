@@ -6,8 +6,6 @@ const path = require('path');
 const app = express();
 const publicPath = path.join(__dirname, './public');
 
-const { PORT } = process.env;
-
 app.use(cookieParser());
 app.use(express.json());
 app.use(morgan('dev'));

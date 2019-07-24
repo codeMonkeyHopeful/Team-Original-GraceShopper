@@ -26,6 +26,7 @@
     "sequelize": "^5.10.1"
   },
   "devDependencies": {
+    "faker": "^4.1.0",
     "jest": "^24.8.0",
     "jest-cli": "^24.8.0"
   }
