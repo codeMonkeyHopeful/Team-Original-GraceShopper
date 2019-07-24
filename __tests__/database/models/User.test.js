@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { db, User } = require('./../../server/database');
+const { db, User } = require('../../../server/database/index.js');
 
 beforeAll(async () => {
   await db.sync({ force: true });
@@ -17,6 +17,7 @@ describe('adding a user', () => {
     const user = await User.create(userObj);
     expect(user.email).toEqual('james@gmail.com');
     expect(user.password).toBeDefined();
+    expect(user.isAdmin).toBe(false);
   });
   test.todo('should not allow duplicate email');
   test.todo('pw should be hashed correctly'); // possibly use a snapshot here
