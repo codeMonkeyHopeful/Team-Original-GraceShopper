@@ -1,4 +1,3 @@
-const faker = require('faker');
 const users = [
   {
     email: 'benson@fsaogs.com',
