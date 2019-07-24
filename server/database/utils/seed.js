@@ -1,28 +1,8 @@
 // seed shit here
 const { db, Profile, Product, Review, User } = require('../index.js');
 
-const users = [
-  {
-    email: 'benson@fsaogs.com',
-    password: 'fsanyc',
-    isAdmin: true,
-  },
-  {
-    email: 'mark@fsaogs.com',
-    password: 'fsanyc',
-    isAdmin: true,
-  },
-  {
-    email: 'ryan@fsaogs.com',
-    password: 'fsanyc',
-    isAdmin: true,
-  },
-  {
-    email: 'russell@fsa.com',
-    password: 'fsata',
-    isAdmin: false,
-  },
-];
+const usersSeed = require('./seed/data/users');
+const userCreator = require('./seed/creators/userCreator');
 
 const product = [
   {
@@ -33,3 +13,24 @@ const product = [
     price: 3.99,
   },
 ];
+
+const seed = async () => {
+  try {
+    console.log('syncing db');
+    await db.sync({ force: true });
+
+    console.log('seeding users');
+    // seed from an array of entries
+    await Promise.all(usersSeed.map(user => userCreator(user)));
+    // create n random entries
+    const usersSeedArr = Array(10).fill();
+    await Promise.all(usersSeedArr.map(() => userCreator()));
+
+    console.log('quitting seed');
+    await db.close();
+  } catch (e) {
+    console.error('seeding error', e);
+  }
+};
+
+seed();
