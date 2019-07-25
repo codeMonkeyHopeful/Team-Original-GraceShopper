@@ -3,16 +3,8 @@ const { db, Profile, Product, Review, User } = require('../../index');
 
 const usersSeed = require('./data/users');
 const userCreator = require('./creators/userCreator');
-
-const product = [
-  {
-    sku: 'longtext',
-    name: 'AA Batteries',
-    category: 'Accessories',
-    description: 'Give your electronics some juice, bro',
-    price: 3.99,
-  },
-];
+const productSeed = require('./data/products');
+const productCreator = require('./creators/productCreator');
 
 const seed = async () => {
   try {
@@ -25,6 +17,13 @@ const seed = async () => {
     // create n random entries
     const usersSeedArr = Array(10).fill();
     await Promise.all(usersSeedArr.map(() => userCreator()));
+
+    console.log('seeding products');
+    await Promise.all(
+      productSeed.map(products => {
+        return productCreator(products);
+      })
+    );
 
     console.log('quitting seed');
     await db.close();
