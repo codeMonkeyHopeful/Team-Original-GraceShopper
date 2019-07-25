@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Tsunenori-L/Team-Original-GraceShopper#readme",
   "dependencies": {
+    "chalk": "^2.4.2",
     "cookie-parser": "^1.4.4",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
