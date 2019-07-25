@@ -2,7 +2,6 @@ const products = [
   {
     sku: '1123',
     name: 'Intel CPU',
-    product_line_id: 1,
     category: 'Computers',
     parent_category_1: 'Computers',
     parent_category_2: 'Parts',
@@ -15,7 +14,6 @@ const products = [
   {
     sku: '1234',
     name: 'Asus',
-    product_line_id: 1,
     category: 'Computers',
     parent_category_1: 'Computers',
     parent_category_2: 'Parts',
@@ -28,7 +26,6 @@ const products = [
   {
     sku: '2234',
     name: 'Mechanical Typewriter',
-    product_line_id: 1,
     category: 'Typerwriters',
     parent_category_1: 'Typerriters',
     parent_category_2: 'Mechanical',
@@ -42,7 +39,6 @@ const products = [
   {
     sku: '2456',
     name: 'Electronic Typewriter',
-    product_line_id: 1,
     category: 'Typerwriters',
     parent_category_1: 'Typewriters',
     parent_category_2: 'Electronic',
@@ -55,7 +51,6 @@ const products = [
   {
     sku: '3456',
     name: 'Handheld Calculator',
-    product_line_id: 1,
     category: 'Data Devices',
     parent_category_1: 'Data Devices',
     parent_category_2: 'Hand Held',
@@ -68,7 +63,6 @@ const products = [
   {
     sku: '3555',
     name: 'Electronic Translator',
-    product_line_id: 1,
     category: 'Data Devices',
     parent_category_1: 'Data Devices',
     parent_category_2: 'Hand Held',
