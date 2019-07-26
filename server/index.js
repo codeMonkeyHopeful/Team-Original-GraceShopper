@@ -1,7 +1,3 @@
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();
-}
-
 const { db } = require('./database');
 const app = require('./server');
 
@@ -10,6 +6,10 @@ const { PORT } = process.env;
 db.sync().then(() => {
   console.log('db synced');
   app.listen(PORT, () => {
-    console.log('i livve');
+    console.log(`
+      Listening on PORT : ${PORT}
+
+      http://localhost:3000
+    `);
   });
 });
