@@ -9,7 +9,8 @@
     "start-server:dev": "./node_modules/.bin/nodemon ./server/index.js",
     "build": "webpack",
     "build-watch": "webpack -w",
-    "dev": "npm run start-server:dev & npm run build-watch"
+    "dev": "npm run start-server:dev & npm run build-watch",
+    "seed": "node ./server/database/utils/seed/seed.js"
   },
   "repository": {
     "type": "git",
