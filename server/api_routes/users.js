@@ -15,7 +15,7 @@ router.get('/:id', (req, res, next) => {
   return User.findByPk(id)
     .then(user => res.json(user))
     .catch(e => {
-      console.log(chalk.redBright('Unable to find users in database!'), e);
+      console.log(chalk.redBright('Unable to find user in database!'));
       next(e);
     });
 });
@@ -26,12 +26,12 @@ router.post('/', (req, res, next) => {
   return User.create(body)
     .then(newUser => res.json(newUser))
     .catch(e => {
-      console.log(chalk.redBright('Error creating/adding new user!'), e);
+      console.log(chalk.redBright('Error creating/adding new user!'));
       next(e);
     });
 });
 
-// Update selected user data to database
+// Update selected user data to database -- needs fixing **
 router.put('/:id', (req, res, next) => {
   const { id } = req.params;
   return User.update({ returning: true, where: { id } })
@@ -39,7 +39,7 @@ router.put('/:id', (req, res, next) => {
       res.status(204).json({ message: 'User has been successfully updated!' })
     )
     .catch(e => {
-      console.log(chalk.redBright('Error updating user: '), e);
+      console.log(chalk.redBright('Error updating user: '));
       next(e);
     });
 });
@@ -52,7 +52,7 @@ router.delete('/:id', (req, res, next) => {
       res.status(200).json({ message: 'User has been successfully deleted!' })
     )
     .catch(e => {
-      console.log(chalk.redBright('Error deleting user from database!'), e);
+      console.log(chalk.redBright('Error deleting user from database!'));
       next(e);
     });
 });

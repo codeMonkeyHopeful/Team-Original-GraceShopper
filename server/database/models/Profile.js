@@ -44,7 +44,7 @@ const Profile = db.define('profile', {
   },
   phone_number: {
     type: Sequelize.INTEGER,
-    defaultValue: 424 - 242 - 4242,
+    defaultValue: 4242424242,
   },
 });
 
