@@ -9,7 +9,8 @@ const publicPath = path.join(__dirname, './public');
 
 app.use(cookieParser());
 app.use(express.json());
-app.use(morgan('dev'));
+const morganMode = process.env.NODE_ENV === 'production' ? 'tiny' : 'dev';
+app.use(morgan(morganMode));
 
 app.use(express.static(publicPath));
 
