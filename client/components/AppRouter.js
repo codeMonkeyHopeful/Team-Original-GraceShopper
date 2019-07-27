@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 
 import Header from './Header/Header';
+import AccountProfile from './Header/Navbar/AccountProfile';
 // remove Test component
 const Test = props => {
   return <div>Testing</div>;
@@ -19,6 +20,7 @@ const AppRouter = () => {
         <Header />
         <Switch>
           <Route exact path="/" component={Test} />
+          <Route exact path="/account" component={AccountProfile} />
         </Switch>
       </Router>
     </div>
