@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
-
+const ProductCategory = require('./ProductCategory');
 const Product = db.define('product', {
   sku: {
     type: Sequelize.TEXT,
@@ -62,6 +62,13 @@ const Product = db.define('product', {
     type: Sequelize.STRING,
     defaultValue: 'https://picsum.photos/200', //will generate a random image on ever refresh of the page
   },
+  // productId: {
+  //   type: Sequelize.INTEGER,
+  //   references: {
+  //     model: ProductCategory,
+  //     key: 'id',
+  //   },
+  // },
 });
 
 module.exports = Product;

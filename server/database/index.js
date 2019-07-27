@@ -7,6 +7,10 @@ const User = require('./models/User');
 const ProductCategory = require('./models/ProductCategory');
 
 // export models here
+
+Product.belongsTo(ProductCategory);
+ProductCategory.hasMany(Product);
+
 module.exports = {
   db,
   Profile,

@@ -26,17 +26,16 @@ const seed = async () => {
     const usersSeedArr = Array(10).fill();
     await Promise.all(usersSeedArr.map(() => userCreator()));
 
-    console.log('seeding products');
-    await Promise.all(
-      productSeed.map(products => {
-        return productCreator(products);
-      })
-    );
-
     console.log('seeding Product Categories');
     await Promise.all(
       productcategory.map(pc => {
         return ProductCategory.create(pc);
+      })
+    );
+    console.log('seeding products');
+    await Promise.all(
+      productSeed.map(products => {
+        return productCreator(products);
       })
     );
 

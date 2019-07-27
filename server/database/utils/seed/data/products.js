@@ -10,6 +10,7 @@ const products = [
     price: 199.99,
     image_url: 'https://picsum.photos/200',
     brand_id: 1, //update
+    productCategoryId: 2,
   },
   {
     sku: '1234',
@@ -21,7 +22,8 @@ const products = [
     description: 'Asus Motherboard for Intel CPU',
     price: 59.99,
     image_url: 'https://picsum.photos/200',
-    brand_id: 1, //update
+    brand_id: 1, //update,
+    productCategoryId: 1,
   },
   {
     sku: '2234',
@@ -35,6 +37,7 @@ const products = [
     price: 599.99,
     image_url: 'https://picsum.photos/200',
     brand_id: 1, //update
+    productCategoryId: 3,
   },
   {
     sku: '2456',
@@ -47,6 +50,7 @@ const products = [
     price: 1000.0,
     image_url: 'https://picsum.photos/200',
     brand_id: 1, //update
+    productCategoryId: 4,
   },
   {
     sku: '3456',
@@ -59,6 +63,7 @@ const products = [
     price: 99.99,
     image_url: 'https://picsum.photos/200',
     brand_id: 1, //update
+    productCategoryId: 5,
   },
   {
     sku: '3555',
@@ -72,6 +77,7 @@ const products = [
     price: 59.99,
     image_url: 'https://picsum.photos/200',
     brand_id: 1, //update
+    productCategoryId: 6,
   },
 ];
 
