@@ -11,6 +11,8 @@ const ProductCategory = require('./models/ProductCategory');
 Product.belongsTo(ProductCategory);
 ProductCategory.hasMany(Product);
 
+Profile.belongsTo(User, { foreignKey: 'user_id' });
+
 module.exports = {
   db,
   Profile,
