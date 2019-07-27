@@ -1,10 +1,18 @@
 // seed shit here
-const { db, Profile, Product, Review, User } = require('../../index');
+const {
+  db,
+  Profile,
+  Product,
+  Review,
+  User,
+  ProductCategory,
+} = require('../../index');
 
 const usersSeed = require('./data/users');
 const userCreator = require('./creators/userCreator');
 const productSeed = require('./data/products');
 const productCreator = require('./creators/productCreator');
+const productcategory = require('./data/productcategory');
 
 const seed = async () => {
   try {
@@ -18,6 +26,12 @@ const seed = async () => {
     const usersSeedArr = Array(10).fill();
     await Promise.all(usersSeedArr.map(() => userCreator()));
 
+    console.log('seeding Product Categories');
+    await Promise.all(
+      productcategory.map(pc => {
+        return ProductCategory.create(pc);
+      })
+    );
     console.log('seeding products');
     await Promise.all(
       productSeed.map(products => {
