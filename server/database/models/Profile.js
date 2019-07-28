@@ -20,7 +20,7 @@ const Profile = db.define('profile', {
   },
   profile_pic_url: {
     type: Sequelize.TEXT,
-    defaultValue: faker.image.imageUrl(),
+    defaultValue: faker.image.people(),
     validate: {
       isURL: true,
     },
@@ -43,7 +43,6 @@ const Profile = db.define('profile', {
       isIn: [states],
     },
   },
-
   zipcode: {
     type: Sequelize.INTEGER,
     validate: {
@@ -51,8 +50,8 @@ const Profile = db.define('profile', {
     },
   },
   phone_number: {
-    type: Sequelize.INTEGER,
-    defaultValue: 4242424242,
+    type: Sequelize.STRING,
+    defaultValue: '4242424242',
     validate: {
       len: [10],
     },
