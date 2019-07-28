@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
 const states = require('../utils/states_abbrevs');
+const faker = require('faker');
 
 const Profile = db.define('profile', {
   first_name: {
@@ -15,6 +16,13 @@ const Profile = db.define('profile', {
     allowNull: false,
     validate: {
       notEmpty: true,
+    },
+  },
+  profile_pic_url: {
+    type: Sequelize.TEXT,
+    defaultValue: faker.image.people(),
+    validate: {
+      isURL: true,
     },
   },
   street_address: {
@@ -35,7 +43,6 @@ const Profile = db.define('profile', {
       isIn: [states],
     },
   },
-
   zipcode: {
     type: Sequelize.INTEGER,
     validate: {
@@ -43,8 +50,11 @@ const Profile = db.define('profile', {
     },
   },
   phone_number: {
-    type: Sequelize.INTEGER,
-    defaultValue: 4242424242,
+    type: Sequelize.STRING,
+    defaultValue: '4242424242',
+    validate: {
+      len: [10],
+    },
   },
 });
 

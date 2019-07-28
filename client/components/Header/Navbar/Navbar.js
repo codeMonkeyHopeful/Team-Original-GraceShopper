@@ -15,10 +15,10 @@ const Navbar = () => {
     <div id="nav-links-container" style={NAV_LINKS_CONTAINER}>
       <div id="nav-products-container">
         {/* modals */}
-        <a href="" style={PRODUCT_MODAL}>
+        <a href="/products" style={PRODUCT_MODAL}>
           Products
         </a>
-        <a href="" style={PRODUCT_MODAL}>
+        <a href="/brands" style={PRODUCT_MODAL}>
           Brands
         </a>
       </div>

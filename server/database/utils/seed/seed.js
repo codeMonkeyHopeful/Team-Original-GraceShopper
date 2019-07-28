@@ -13,6 +13,7 @@ const userCreator = require('./creators/userCreator');
 const productSeed = require('./data/products');
 const productCreator = require('./creators/productCreator');
 const productcategory = require('./data/productcategory');
+const testProfile = require('./data/testProfile');
 
 const seed = async () => {
   try {
@@ -38,6 +39,8 @@ const seed = async () => {
         return productCreator(products);
       })
     );
+    console.log('seeding testProfile');
+    await Profile.create(testProfile);
 
     console.log('quitting seed');
     await db.close();
