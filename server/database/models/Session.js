@@ -3,13 +3,17 @@ const db = require('../db');
 const chalk = require('chalk');
 
 const Session = db.define('session', {
-  SID: {
-    type: Sequelize.INTEGER,
+  sid: {
+    type: Sequelize.STRING,
     allowNull: false,
+    primaryKey: true,
   },
   visit_count: {
     type: Sequelize.INTEGER,
     defaultValue: 0,
+  },
+  expires: {
+    type: Sequelize.DATE,
   },
 });
 
