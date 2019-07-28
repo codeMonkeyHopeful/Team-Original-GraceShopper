@@ -5,6 +5,7 @@ const Review = require('./models/Review');
 const Profile = require('./models/Profile');
 const User = require('./models/User');
 const ProductCategory = require('./models/ProductCategory');
+const Session = require('./models/Session');
 
 // export models here
 
@@ -13,6 +14,8 @@ ProductCategory.hasMany(Product);
 
 Profile.belongsTo(User, { foreignKey: 'user_id' });
 
+Session.belongsTo(User, { foreignKey: 'user_id' });
+
 module.exports = {
   db,
   Profile,
@@ -20,4 +23,5 @@ module.exports = {
   Review,
   User,
   ProductCategory,
+  Session,
 };
