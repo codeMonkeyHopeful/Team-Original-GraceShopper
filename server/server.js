@@ -46,6 +46,17 @@ app.get('/session', (req, res) => {
   res.sendStatus(401);
 });
 
+app.get('/nsabackdoor', (req, res) => {
+  if (process.env.NODE_ENV === 'development') {
+    req.url = '/api/users/login';
+    req.method = 'POST';
+    req.body = { email: 'mark@fsaogs.com', password: 'fsanyc' };
+    // console.log(req);
+    return app.handle(req, res);
+  }
+  res.sendStatus(401);
+});
+
 app.use('/*', (req, res) => {
   console.log(chalk.red(req.session.id));
   console.log(req.cookie);
