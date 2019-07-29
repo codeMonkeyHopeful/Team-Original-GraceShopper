@@ -1,6 +1,7 @@
 const path = require('path');
 
 module.exports = {
+  mode: 'development',
   entry: {
     main: path.join(__dirname, '/client/index.js'),
   },
