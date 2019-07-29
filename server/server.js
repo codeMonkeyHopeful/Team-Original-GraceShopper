@@ -1,55 +1,42 @@
 const express = require('express');
-const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const path = require('path');
-const apiRoutes = require('./api_routes');
 const chalk = require('chalk');
 const session = require('express-session');
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
-const db = require('./database/db');
 const app = express();
+
 const publicPath = path.join(__dirname, './public');
+const db = require('./database/db');
 
 const morganMode = process.env.NODE_ENV === 'production' ? 'tiny' : 'dev';
 app.use(morgan(morganMode));
 
-app.use(cookieParser());
-
-// Learning and trying to apply sessions (not working)
-const extendDefaultFields = (defaults, session) => {
-  console.log('defaults', defaults);
-  console.log(chalk.blue('session', session));
-  return { expires: defaults.expires };
-};
-
 app.use(
   session({
-    secret: 'no secret',
-    cookie: {
-      expires: 600000,
-    },
-    name: 'SID',
+    name: 'sid',
     resave: false,
-    store: new SequelizeStore({
-      db,
-      table: 'session',
-      extendDefaultFields,
-    }),
+    saveUninitialized: true,
+    secret: process.env.SESSION_SECRET || 'session_secret3000',
+    rolling: true,
+    cookie: {
+      maxAge: 24 * 60 * 60 * 1000,
+    },
   })
 );
-
 app.use(express.json());
 app.use(express.static(publicPath));
 
 // api routes here
 
+const apiRoutes = require('./api_routes');
 app.use('/api', apiRoutes);
-
+app.get('/api/session', (req, res) => {
+  res.send(req.session);
+});
 app.use('/*', (req, res) => {
-  // console.dir(req.session, { showHidden: true });
-  // session.save();
-  console.log(req.session);
+  console.log(chalk.red(req.session.id));
+  console.log(req.cookie);
   res.sendFile(path.join(publicPath, 'index.html'));
 });
 
