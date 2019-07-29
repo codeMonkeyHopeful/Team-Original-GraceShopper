@@ -15,11 +15,14 @@ const Session = db.define('session', {
   expires: {
     type: Sequelize.DATE,
   },
+  data: {
+    type: Sequelize.STRING,
+  },
 });
 
-Session.beforeUpdate(session => {
-  session.visit_count++;
-  console.log(chalk.bgGreen('Successfully updated visit count.'));
-});
+// Session.beforeUpdate(session => {
+//   session.visit_count++;
+//   console.log(chalk.bgGreen('Successfully updated visit count.'));
+// });
 
 module.exports = Session;

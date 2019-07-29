@@ -3,11 +3,11 @@ const morgan = require('morgan');
 const path = require('path');
 const chalk = require('chalk');
 const session = require('express-session');
-
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const app = express();
 
 const publicPath = path.join(__dirname, './public');
-const db = require('./database/db');
+const { db, Session } = require('./database');
 
 const morganMode = process.env.NODE_ENV === 'production' ? 'tiny' : 'dev';
 app.use(morgan(morganMode));
@@ -22,18 +22,18 @@ app.use(
     cookie: {
       maxAge: 24 * 60 * 60 * 1000,
     },
+    store: new SequelizeStore({
+      db,
+      table: 'session',
+    }),
   })
 );
 app.use(express.json());
 app.use(express.static(publicPath));
 
-// api routes here
-
 const apiRoutes = require('./api_routes');
 app.use('/api', apiRoutes);
-app.get('/api/session', (req, res) => {
-  res.send(req.session);
-});
+
 app.use('/*', (req, res) => {
   console.log(chalk.red(req.session.id));
   console.log(req.cookie);
