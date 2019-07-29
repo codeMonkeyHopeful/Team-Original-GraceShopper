@@ -12,6 +12,14 @@ const { db, Session } = require('./database');
 const morganMode = process.env.NODE_ENV === 'production' ? 'tiny' : 'dev';
 app.use(morgan(morganMode));
 
+app.use(express.json());
+if (process.env.NODE_ENV === 'development') {
+  app.use(express.urlencoded({ extended: false }));
+}
+
+app.use(express.static(publicPath));
+
+// session cookies
 app.use(
   session({
     name: 'sid',
@@ -28,11 +36,15 @@ app.use(
     }),
   })
 );
-app.use(express.json());
-app.use(express.static(publicPath));
-
 const apiRoutes = require('./api_routes');
 app.use('/api', apiRoutes);
+
+app.get('/session', (req, res) => {
+  if (process.env.NODE_ENV === 'development') {
+    return res.json({ sid: req.session.id, session: req.session });
+  }
+  res.sendStatus(401);
+});
 
 app.use('/*', (req, res) => {
   console.log(chalk.red(req.session.id));

@@ -4,11 +4,27 @@ const chalk = require('chalk');
 
 // Get all users from database
 router.get('/', (req, res, next) => {
-  return User.findAll()
-    .then(users => res.json(users))
-    .catch(next);
+  if (req.session.user && req.session.user.isAdmin) {
+    return User.findAll()
+      .then(users => res.json(users))
+      .catch(next);
+  }
 });
 
+router.post('/login', (req, res, next) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    return res.status(401).send({ error: 'Invalid login credentials' });
+  }
+  // const sessionId = req.session.id ? req.session.id : req.session.regenerate();
+  User.authenticate(email, password)
+    .then(user => {
+      // console.log('user', user);
+      req.session.user = user;
+      res.redirect('/');
+    })
+    .catch(next);
+});
 // Get user by ID route from database
 router.get('/:id', (req, res, next) => {
   const { id } = req.params;
