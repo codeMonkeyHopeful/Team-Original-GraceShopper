@@ -2,6 +2,7 @@ export const HEADER_CONTAINER = {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
+  backgroundColor: '#0046be',
 };
 
 export const NAV_LINKS_CONTAINER = {
@@ -26,5 +27,5 @@ export const PRODUCT_MODAL = {
 };
 
 export const SEARCH_INPUT = {
-  width: '70vw',
+  width: '50vw',
 };

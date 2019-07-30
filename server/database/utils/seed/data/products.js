@@ -10,7 +10,7 @@ const products = [
     price: 199.99,
     image_url:
       'https://images-na.ssl-images-amazon.com/images/I/51r5Y8XozrL._SX425_.jpg',
-    brand_id: 1, //update
+    brandId: 1, //update
     productCategoryId: 2,
   },
   {
@@ -24,7 +24,7 @@ const products = [
     price: 59.99,
     image_url:
       'https://media.karousell.com/media/photos/products/2018/04/22/old_motherboard_1524363280_5aeb172f.jpg',
-    brand_id: 1, //update,
+    brandId: 1, //update,
     productCategoryId: 1,
   },
   {
@@ -39,7 +39,7 @@ const products = [
     price: 599.99,
     image_url:
       'https://cdn.shopify.com/s/files/1/0557/2745/products/QWS_Store_Black_1_1_1600x.png?v=1549488087',
-    brand_id: 1, //update
+    brandId: 1, //update
     productCategoryId: 3,
   },
   {
@@ -53,7 +53,7 @@ const products = [
     price: 1000.0,
     image_url:
       'https://technabob.com/blog/wp-content/uploads/2014/10/hemingwrite-by-adam-leeb-and-patrick-paul.jpg',
-    brand_id: 1, //update
+    brandId: 1, //update
     productCategoryId: 4,
   },
   {
@@ -62,11 +62,11 @@ const products = [
     category: 'Data Devices',
     parent_category_1: 3,
     parent_category_2: 31,
-    parent_category_3: 311,
+    parent_category_3: 31,
     description: 'TI-86 graphing calculator to meet all your mathing needs',
     price: 99.99,
     image_url: 'http://www.vintagecalculators.com/assets/images/TI2500_1.jpg',
-    brand_id: 1, //update
+    brandId: 1, //update
     productCategoryId: 5,
   },
   {
@@ -81,7 +81,7 @@ const products = [
     price: 59.99,
     image_url:
       'https://www.picclickimg.com/d/l400/pict/223453646779_/Craig-M100-Handheld-Translator-English-French-German-Capsules.jpg',
-    brand_id: 1, //update
+    brandId: 1, //update
     productCategoryId: 6,
   },
 ];
