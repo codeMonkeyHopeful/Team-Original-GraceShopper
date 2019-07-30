@@ -11,6 +11,8 @@ import {
 } from '../styles';
 
 const Navbar = () => {
+  const navbarButtons = ['account', 'orders', 'cart'];
+
   return (
     <div id="nav-links-container" style={NAV_LINKS_CONTAINER}>
       <div id="nav-products-container">
@@ -26,15 +28,26 @@ const Navbar = () => {
         {/* login status should come from redux */}
 
         <LoginLink />
-        <NavLink to="/account" style={NAV_LINK}>
-          Account
+        {navbarButtons.map(button => {
+          return (
+            <NavLink to={button} style={NAV_LINK}>
+              <button>
+                {button[0].toUpperCase()}
+                {button.slice(1)}
+              </button>
+            </NavLink>
+          );
+        })}
+
+        {/* <NavLink to="/account" style={NAV_LINK}>
+          <button>Account</button>
         </NavLink>
         <NavLink to="/orders" style={NAV_LINK}>
-          Orders
+          <button>Orders</button>
         </NavLink>
         <NavLink to="/cart" style={NAV_LINK}>
-          Cart
-        </NavLink>
+          <button>Cart</button>
+        </NavLink> */}
       </div>
     </div>
   );

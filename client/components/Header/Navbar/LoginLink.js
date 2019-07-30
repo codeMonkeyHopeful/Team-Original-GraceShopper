@@ -35,7 +35,7 @@ const renderLogin = (isLoggedIn, changeStatus) => {
       style={NAV_LINK}
       onClick={() => handleLoginClick(isLoggedIn, changeStatus)}
     >
-      {loginStatus}
+      <button>{loginStatus}</button>
     </NavLink>
   );
 };
