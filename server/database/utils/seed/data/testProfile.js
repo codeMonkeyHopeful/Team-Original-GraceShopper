@@ -17,7 +17,7 @@ const testProfile = {
       max: 9999999999,
     })
     .toString(),
-  user_id: 1,
+  userId: 1,
 };
 
 module.exports = testProfile;

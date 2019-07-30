@@ -3,7 +3,7 @@ import React from 'react';
 import Navbar from './Navbar/Navbar';
 import Searchbar from './Searchbar';
 
-import { HEADER_CONTAINER, BESTER_BUY_SEARCH } from './styles';
+import { HEADER_CONTAINER } from './styles';
 
 const Header = () => {
   return (

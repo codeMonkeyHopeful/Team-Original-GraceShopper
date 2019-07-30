@@ -6,6 +6,7 @@ const {
   Review,
   User,
   ProductCategory,
+  Brand,
 } = require('../../index');
 
 const usersSeed = require('./data/users');
@@ -14,6 +15,7 @@ const productSeed = require('./data/products');
 const productCreator = require('./creators/productCreator');
 const productcategory = require('./data/productcategory');
 const testProfile = require('./data/testProfile');
+const brands = require('./data/brands');
 
 const seed = async () => {
   try {
@@ -33,6 +35,9 @@ const seed = async () => {
         return ProductCategory.create(pc);
       })
     );
+    console.log('seeding brands');
+    await Promise.all(brands.map(brand => Brand.create(brand)));
+
     console.log('seeding products');
     await Promise.all(
       productSeed.map(products => {
