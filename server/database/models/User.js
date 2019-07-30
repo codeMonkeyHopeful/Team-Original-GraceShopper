@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('./../db');
+const Profile = require('./Profile');
 
 const { hashPw, comparePw } = require('./../utils/bcrypt');
 
@@ -57,7 +58,7 @@ User.beforeUpdate(async user => {
 // returns user info if authentication is successful
 // otherwise throws an error
 User.authenticate = function(email, password) {
-  return this.findOne({ where: { email } })
+  return this.findOne({ where: { email }, include: [{ model: Profile }] })
     .then(user => {
       if (!user) {
         return Promise.reject(userNotFoundError);
@@ -65,8 +66,14 @@ User.authenticate = function(email, password) {
       return Promise.all([comparePw(password, user.password), user]);
     })
     .then(([isValid, user]) => {
+      console.log(user);
       if (isValid) {
-        return { user_id: user.id, email: user.email, isAdmin: user.isAdmin };
+        return {
+          user_id: user.id,
+          email: user.email,
+          isAdmin: user.isAdmin,
+          profile: user.profile,
+        };
       }
       return Promise.reject(userValidationError);
     });
