@@ -3,6 +3,7 @@ import {
   GOT_TOP_TIER_CATS,
   INCREMENT_PROD_LEVEL,
   GOT_UPDATED_CATS,
+  GOT_UPDATED_PRODUCTS,
 } from '../actionCreators/productsCreators';
 import store from '..';
 
