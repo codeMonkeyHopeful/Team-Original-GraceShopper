@@ -42,6 +42,11 @@ const AppRouter = props => {
     })(),
     15 * 60 * 1000
   );
+  import MainProducts from './Products/MainProducts';
+  // remove Test component
+  const Test = props => {
+    return <div>Home Sweet Home</div>;
+  };
 
   const Test = () => {
     return (
@@ -51,13 +56,14 @@ const AppRouter = props => {
     );
   };
   return (
-    <div id="main-container">
+    <div id='main-container'>
       <Router>
         <Header />
         <Switch>
-          <Route exact path="/" component={Test} />
-          <Route exact path="/account" component={AccountProfile} />
-          <Route exact path="/login" component={Login} />
+          <Route exact path='/' component={Test} />
+          <Route exact path='/account' component={AccountProfile} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/products' component={MainProducts} />
         </Switch>
       </Router>
     </div>
