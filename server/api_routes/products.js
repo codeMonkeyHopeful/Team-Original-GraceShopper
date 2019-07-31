@@ -8,7 +8,7 @@ router.get('/', (req, res, next) => {
       model: ProductCategory, //need to figure this out
     },
   })
-    .then(products => res.json(products))
+    .then(products => res.status(201).json(products))
     .catch(next);
 });
 
