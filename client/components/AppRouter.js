@@ -10,6 +10,11 @@ import {
 import Header from './Header/Header';
 import AccountProfile from './Header/Navbar/AccountProfile';
 import Login from './login/Login';
+import MainProducts from './Products/MainProducts';
+import DataDevices from './Products/DataDevices';
+import Computers from './Products/Computers';
+import TypeWriters from './Products/TypeWriters';
+
 import axios from 'axios';
 
 import { changeLoginStatus, gotUser } from './../redux';
@@ -49,6 +54,8 @@ const AppRouter = props => {
     15 * 60 * 1000
   );
 
+  // remove Test component
+
   const Test = () => {
     return (
       <div>
@@ -57,13 +64,17 @@ const AppRouter = props => {
     );
   };
   return (
-    <div id="main-container">
+    <div id='main-container'>
       <Router>
         <Header />
         <Switch>
-          <Route exact path="/" component={Test} />
-          <Route exact path="/account" component={AccountProfile} />
-          <Route exact path="/login" component={Login} />
+          <Route exact path='/' component={Test} />
+          <Route exact path='/account' component={AccountProfile} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/products' component={MainProducts} />
+          <Route exact path='/1' component={Computers} />
+          <Route exact path='/2' component={TypeWriters} />
+          <Route exact path='/3' component={DataDevices} />
         </Switch>
       </Router>
     </div>
