@@ -69,7 +69,7 @@ const AppRouter = props => {
           <Route exact path='/account' component={AccountProfile} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/products' component={MainProducts} />
-          <Route path='/1' component={Computers} />
+          <Route exact path='/1' component={Computers} />
           <Route path='/2' component={TypeWriters} />
           <Route path='/3' component={DataDevices} />
         </Switch>
