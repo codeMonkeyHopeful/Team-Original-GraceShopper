@@ -15,6 +15,7 @@ const productSeed = require('./data/products');
 const productCreator = require('./creators/productCreator');
 const productcategory = require('./data/productcategory');
 const generateProfile = require('./data/testProfile');
+const brands = require('./data/brands');
 
 const seed = async () => {
   try {
@@ -48,7 +49,7 @@ const seed = async () => {
     for (let i = 0; i < users.length; i++) {
       const userid = users[i].id;
       const profile = await Profile.create(generateProfile());
-      await profile.update({ user_id: userid });
+      await profile.update({ userId: userid });
     }
 
     console.log('quitting seed');
