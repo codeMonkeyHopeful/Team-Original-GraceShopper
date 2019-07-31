@@ -1,0 +1,13 @@
+language: node_js
+
+node_js:
+  - '10'
+
+deploy:
+  provider: heroku
+  //use heroku and travis clis to add encrypted api key
+  app: some-app-name
+  run: 
+    - 'npm run seed'
+  on: 
+    branch: dev
