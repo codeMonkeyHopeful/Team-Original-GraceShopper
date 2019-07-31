@@ -7,7 +7,7 @@ const DataDevices = props => {
   useEffect(() => {
     axios.get('/api/categories/level2').then(res => {
       let dataDevices = res.data.filter(
-        item => item.pcid2 >= 30 && item.pcid2 <= 39
+        item => item.pcid2 >= 20 && item.pcid2 <= 29
       );
       const categoriesObj = dataDevices;
       setCategories(() => categoriesObj);
