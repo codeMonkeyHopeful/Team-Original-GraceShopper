@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require('../database/index.js');
+const { User, Profile, Session } = require('../database/index.js');
 const chalk = require('chalk');
 
 // GET to api/users/
@@ -17,19 +17,24 @@ router.get('/', (req, res, next) => {
 // Route: POST to api/users/login
 // Access: public
 router.post('/login', (req, res, next) => {
-  console.log('api login');
   const { email, password } = req.body;
   if (!email || !password) {
-    return res.status(401).send({ error: 'Invalid login credentials' });
+    return res.status(401).json({ error: 'Invalid login credentials' });
   }
-
+  // returns user and
   User.authenticate(email, password)
     .then(user => {
-      console.log('user authenticated');
-      req.session.user = user;
+      req.session.user = {
+        email: user.email,
+        user_id: user.user_id,
+      };
       req.session.isAdmin = user.isAdmin;
       req.session.save(() => {
-        res.status(201).json(user);
+        res.status(201).json({
+          email: user.email,
+          profile: user.profile,
+          isAdmin: user.isAdmin,
+        });
       });
     })
     .catch(next);
@@ -42,11 +47,6 @@ router.post('/logout', (req, res, next) => {
   req.session.destroy(() => {
     res.send('user logged out');
   });
-});
-
-router.post('/logout', (req, res, next) => {
-  req.session.destroy();
-  res.send;
 });
 
 // GET to api/users/:id
@@ -64,6 +64,19 @@ router.get('/:id', (req, res, next) => {
   res.sendStatus(401);
 });
 
+//GET to api/users/:id/session
+// Acess: Private
+router.get('/:id/session', (req, res, next) => {
+  const { id } = req.params;
+  if (
+    (req.session && req.session.isAdmin) ||
+    req.session.user.user_id === parseInt(id)
+  ) {
+    res.status(200).json({ isActiveSession: true });
+  } else {
+    res.status(205).send({ isActiveSession: false });
+  }
+});
 // POST to api/users/
 // Access: private, admin only
 // Note: this is not the signup route
@@ -76,8 +89,9 @@ router.post('/', (req, res, next) => {
         console.log(chalk.redBright('Error creating/adding new user!'));
         next(e);
       });
+  } else {
+    res.sendStatus(401);
   }
-  res.sendStatus(401);
 });
 
 // PUT to api/users/:id
@@ -110,8 +124,9 @@ router.put('/:id', (req, res, next) => {
         console.log(chalk.redBright('Error updating user: '));
         next(e);
       });
+  } else {
+    res.sendStatus(401);
   }
-  res.sendStatus(401);
 });
 
 // DELETE to api/users/:id
@@ -130,8 +145,9 @@ router.delete('/:id', (req, res, next) => {
         console.log(chalk.redBright('Error deleting user from database!'));
         next(e);
       });
+  } else {
+    res.sendStatus(401);
   }
-  res.sendStatus(401);
 });
 
 module.exports = router;

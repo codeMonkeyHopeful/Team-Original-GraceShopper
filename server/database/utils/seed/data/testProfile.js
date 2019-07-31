@@ -3,7 +3,7 @@ const states = require('../../states_abbrevs');
 
 const randomState = states[Math.floor(Math.random() * states.length)];
 
-const testProfile = {
+const generateTestProfile = () => ({
   first_name: faker.name.firstName(),
   last_name: faker.name.lastName(),
   profile_pic_url: faker.image.image(),
@@ -17,7 +17,7 @@ const testProfile = {
       max: 9999999999,
     })
     .toString(),
-  userId: 1,
-};
+  // user_id: 1,
+});
 
-module.exports = testProfile;
+module.exports = generateTestProfile;

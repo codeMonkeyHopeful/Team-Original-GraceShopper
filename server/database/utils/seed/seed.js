@@ -14,7 +14,7 @@ const userCreator = require('./creators/userCreator');
 const productSeed = require('./data/products');
 const productCreator = require('./creators/productCreator');
 const productcategory = require('./data/productcategory');
-const testProfile = require('./data/testProfile');
+const generateProfile = require('./data/testProfile');
 const brands = require('./data/brands');
 
 const seed = async () => {
@@ -44,8 +44,13 @@ const seed = async () => {
         return productCreator(products);
       })
     );
-    console.log('seeding testProfile');
-    await Profile.create(testProfile);
+    console.log('seeding profiles');
+    const users = await User.findAll();
+    for (let i = 0; i < users.length; i++) {
+      const userid = users[i].id;
+      const profile = await Profile.create(generateProfile());
+      await profile.update({ userId: userid });
+    }
 
     console.log('quitting seed');
     await db.close();
