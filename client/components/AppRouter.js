@@ -12,6 +12,9 @@ import AccountProfile from './Header/Navbar/AccountProfile';
 import Login from './login/Login';
 import MainProducts from './Products/MainProducts';
 import DataDevices from './Products/DataDevices';
+import Computers from './Products/Computers';
+import TypeWriters from './Products/TypeWriters';
+
 import axios from 'axios';
 
 import { changeLoginStatus, gotUser } from './../redux';
@@ -66,6 +69,8 @@ const AppRouter = props => {
           <Route exact path='/account' component={AccountProfile} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/products' component={MainProducts} />
+          <Route path='/1' component={Computers} />
+          <Route path='/2' component={TypeWriters} />
           <Route path='/3' component={DataDevices} />
         </Switch>
       </Router>
