@@ -42,9 +42,10 @@ User.beforeCreate(async user => {
 User.beforeUpdate(async user => {
   const incomingPw = user.dataValues.password;
   const currentPw = user._previousDataValues.password;
-
   try {
-    const isSame = await comparePw(incomingPw, currentPw);
+    // check incoming plaintext/previous hash
+    const isSame =
+      (await comparePw(incomingPw, currentPw)) || incomingPw === currentPw;
     if (isSame) {
       user.password = currentPw;
     } else {
