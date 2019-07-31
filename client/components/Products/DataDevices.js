@@ -2,12 +2,14 @@ import React, { Component, useState, useEffect } from 'react';
 import { Route, Link } from 'react-router-dom';
 import axios from 'axios';
 
-const MainProducts = props => {
+const DataDevices = props => {
   const [categories, setCategories] = useState([]);
   useEffect(() => {
-    axios.get('/api/categories/level1').then(res => {
-      //console.log('res', res.data);
-      const categoriesObj = res.data;
+    axios.get('/api/categories/level2').then(res => {
+      let dataDevices = res.data.filter(
+        item => item.pcid2 > 29 && item.pcid2 <= 39
+      );
+      const categoriesObj = dataDevices;
       setCategories(() => categoriesObj);
     });
   }, []);
@@ -18,7 +20,7 @@ const MainProducts = props => {
         {categories.map(category => {
           return (
             <div>
-              <Link to={`/${category.pcid1}`}>{category.name1}</Link>
+              <Link to={`/${category.pcid2}`}>{category.name2}</Link>
             </div>
           );
         })}
@@ -27,4 +29,4 @@ const MainProducts = props => {
   );
 };
 
-export default MainProducts;
+export default DataDevices;
