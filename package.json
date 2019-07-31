@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --runInBand",
     "start": "node server/index.js",
     "start-server:dev": "./node_modules/.bin/nodemon ./server/index.js",
     "build": "webpack --mode=\"production\"",

@@ -39,17 +39,18 @@ describe('adding a user', () => {
     const user3 = await User.create(user3Obj);
     expect(user3.password).not.toBe(user3Obj.password);
   });
-  test('update should hash new password', async () => {
+  test('update should hash incoming password', async () => {
     const user3UpdateObj = {
       email: 'asdf@msn.com',
+      password: 'asdfasdf',
     };
     const user3 = await User.findOne({ where: { email: 'frank@google.com' } });
-    user3Pw = user3.password;
-    const user3Update = user3.update(user3UpdateObj);
+    const user3Pw = user3.password;
+    const user3Update = await user3.update(user3UpdateObj);
 
     expect(user3Update.password).not.toEqual(user3Pw);
   });
-  test('update should not hash the previous password', async () => {
+  test('update should not rehash the previous password', async () => {
     const user4Obj = { email: 'russell@fsa.com', password: 'gitgood' };
     const user4 = await User.create(user4Obj);
     const newPassword = 'asdfasdf';
