@@ -30,13 +30,19 @@ const AppRouter = props => {
   setInterval(
     (function checkSession() {
       console.log('checking session');
+      if (!localStorageUserInfo) {
+        window.localStorage.clear();
+      }
       if (localStorageUserInfo && localStorageUserInfo.profile.user_id) {
         const userId = localStorageUserInfo.profile.user_id;
-        axios.get(`/api/users/${userId}`).then(res => {
-          if (!res.data.isActiveSession) {
-            window.localStorage.clear();
-          }
-        });
+        axios
+          .get(`/api/users/${userId}/session`)
+          .then(res => {
+            if (!res.data.isActiveSession) {
+              window.localStorage.clear();
+            }
+          })
+          .catch(e => console.error(e));
       }
       return checkSession;
     })(),
