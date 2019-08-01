@@ -20,39 +20,21 @@ import axios from 'axios';
 import { changeLoginStatus, gotUser } from './../redux';
 
 const AppRouter = props => {
-  // grab login info from local storage and parse
-  let localStorageLoginStatus = window.localStorage.getItem('isLoggedIn');
-  if (localStorageLoginStatus === 'true') {
-    props.changeLogin(true);
-  }
-  let localStorageUserInfo = window.localStorage.getItem('userInfo');
-  if (localStorageUserInfo) {
-    localStorageUserInfo = JSON.parse(localStorageUserInfo);
-    props.setUserInfo(localStorageUserInfo);
-  }
-
-  // check if session is active every 15 minutes and on page load
-  setInterval(
-    (function checkSession() {
-      console.log('checking session');
-      if (!localStorageUserInfo) {
-        window.localStorage.clear();
+  const { changeLogin, setUserInfo } = props;
+  // check login status based on express session
+  axios
+    .get('/api/users/checklogin')
+    .then(res => {
+      const userInfo = res.data;
+      if (userInfo) {
+        console.log('logged in', userInfo);
+        changeLogin(true);
+        setUserInfo(userInfo);
+      } else {
+        console.log('not logged in');
       }
-      if (localStorageUserInfo && localStorageUserInfo.profile.user_id) {
-        const userId = localStorageUserInfo.profile.user_id;
-        axios
-          .get(`/api/users/${userId}/session`)
-          .then(res => {
-            if (!res.data.isActiveSession) {
-              window.localStorage.clear();
-            }
-          })
-          .catch(e => console.error(e));
-      }
-      return checkSession;
-    })(),
-    15 * 60 * 1000
-  );
+    })
+    .catch(e => console.error(e));
 
   // remove Test component
 
