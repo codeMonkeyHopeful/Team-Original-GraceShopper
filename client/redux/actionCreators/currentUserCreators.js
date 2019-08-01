@@ -24,10 +24,6 @@ export const loginThunk = (email, password) => {
         // clear error if login is successful
         dispatch(gotUser({ ...user, error: '' }));
         dispatch(changeLoginStatus(true));
-
-        // put login deets into local storage for persisten login
-        window.localStorage.setItem('userInfo', JSON.stringify(user));
-        window.localStorage.setItem('isLoggedIn', 'true');
       })
       .catch(() => {
         console.log('error redux');

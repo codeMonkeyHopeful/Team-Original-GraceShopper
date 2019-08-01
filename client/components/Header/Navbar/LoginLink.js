@@ -6,24 +6,16 @@ import { changeLoginStatus, logoutUser } from './../../../redux';
 
 import { NAV_LINK } from './../styles';
 
-const handleLogout = changeStatus => {
-  // clear redux state of user info and delete cookie
-  changeStatus(false);
-  logoutUser();
-  window.localStorage.clear();
-};
-
-const handleLoginClick = (isLoggedIn, changeStatus) => {
+const handleLoginClick = (isLoggedIn, changeStatus, logOut) => {
   if (isLoggedIn) {
     console.log('run logout routine');
-    handleLogout(changeStatus, logoutUser);
+    changeStatus(false);
+    logOut();
   }
   // only for testing. delete when login page is up
-
-  // dont need a /login handler because navlink will reroute to login page
 };
 
-const renderLogin = (isLoggedIn, changeStatus) => {
+const renderLogin = (isLoggedIn, changeStatus, logOut) => {
   const path = isLoggedIn ? '/' : '/login';
   const loginStatus = isLoggedIn ? 'Logout' : 'Login';
   return (
@@ -32,7 +24,7 @@ const renderLogin = (isLoggedIn, changeStatus) => {
     <NavLink
       to={path}
       style={NAV_LINK}
-      onClick={() => handleLoginClick(isLoggedIn, changeStatus)}
+      onClick={() => handleLoginClick(isLoggedIn, changeStatus, logOut)}
     >
       <button>{loginStatus}</button>
     </NavLink>
@@ -40,16 +32,7 @@ const renderLogin = (isLoggedIn, changeStatus) => {
 };
 
 const LoginLink = props => {
-  let { isLoggedIn, changeStatus, user } = props;
-  // let localStorageLoginStatus = window.localStorage.getItem('isLoggedIn');
-  // if (localStorageLoginStatus === 'true') {
-  //   isLoggedIn = true;
-  // }
-  // let localStorageUserInfo = window.localStorage.getItem('userInfo');
-  // if (localStorageUserInfo) {
-  //   localStorageUserInfo = JSON.parse(localStorageUserInfo);
-  //   user = localStorageUserInfo;
-  // }
+  let { isLoggedIn, changeStatus, user, logOut } = props;
 
   return (
     <Fragment>
@@ -60,7 +43,7 @@ const LoginLink = props => {
       ) : (
         ''
       )}
-      {renderLogin(isLoggedIn, changeStatus)}
+      {renderLogin(isLoggedIn, changeStatus, logOut)}
     </Fragment>
   );
 };
@@ -73,7 +56,7 @@ const mapDispatch = dispatch => ({
   changeStatus: status => {
     dispatch(changeLoginStatus(status));
   },
-  logoutUser: () => {
+  logOut: () => {
     [dispatch(logoutUser())];
   },
 });
