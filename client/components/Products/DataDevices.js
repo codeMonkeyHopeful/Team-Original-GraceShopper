@@ -13,13 +13,13 @@ const DataDevices = props => {
       setCategories(() => categoriesObj);
     });
   }, []);
-  //console.log(categories);
+  console.log(categories);
   return (
     <div>
       <div>
         {categories.map(category => {
           return (
-            <div>
+            <div key={category.name2}>
               <Link to={`/${category.pcid2}`}>{category.name2}</Link>
             </div>
           );

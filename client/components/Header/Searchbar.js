@@ -1,21 +1,15 @@
 import React from 'react';
-import { SEARCH_INPUT } from './styles';
+import { SEARCH_INPUT, SEARCH_BAR } from './styles';
 
 const Searchbar = () => {
   return (
-    <div
-      id="search-bar"
-      style={{
-        width: '100vw',
-      }}
-    >
-      <div />
+    <div id="search-bar" style={SEARCH_BAR}>
       <form action="submit">
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <input
             type="text"
             name="search"
-            placeholder="search"
+            placeholder="Search"
             style={SEARCH_INPUT}
           />
           <button type="submit"> Search</button>

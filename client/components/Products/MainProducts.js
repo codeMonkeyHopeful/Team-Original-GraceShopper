@@ -11,13 +11,13 @@ const MainProducts = props => {
       setCategories(() => categoriesObj);
     });
   }, []);
-  //console.log(categories);
+  // console.log(categories);
   return (
     <div>
       <div>
         {categories.map(category => {
           return (
-            <div>
+            <div key={category.name1}>
               <Link to={`/${category.pcid1}`}>{category.name1}</Link>
             </div>
           );

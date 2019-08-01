@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import LoginLink from './LoginLink';
+import cartImage from './cartImage';
 
 import {
   NAV_LINKS_CONTAINER,
@@ -29,25 +30,27 @@ const Navbar = () => {
 
         <LoginLink />
         {navbarButtons.map(button => {
-          return (
-            <NavLink to={button} style={NAV_LINK}>
-              <button>
-                {button[0].toUpperCase()}
-                {button.slice(1)}
-              </button>
-            </NavLink>
-          );
+          if (button === 'cart') {
+            return (
+              <NavLink key={button} to={button} style={NAV_LINK}>
+                <button>
+                  {cartImage} {button[0].toUpperCase()}
+                  {button.slice(1)}
+                  {/* Need to add number items in cart */}
+                </button>
+              </NavLink>
+            );
+          } else {
+            return (
+              <NavLink key={button} to={button} style={NAV_LINK}>
+                <button>
+                  {button[0].toUpperCase()}
+                  {button.slice(1)}
+                </button>
+              </NavLink>
+            );
+          }
         })}
-
-        {/* <NavLink to="/account" style={NAV_LINK}>
-          <button>Account</button>
-        </NavLink>
-        <NavLink to="/orders" style={NAV_LINK}>
-          <button>Orders</button>
-        </NavLink>
-        <NavLink to="/cart" style={NAV_LINK}>
-          <button>Cart</button>
-        </NavLink> */}
       </div>
     </div>
   );

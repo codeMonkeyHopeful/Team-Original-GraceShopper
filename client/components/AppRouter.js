@@ -56,7 +56,7 @@ const AppRouter = props => {
 
   // remove Test component
 
-  const Test = () => {
+  const Home = () => {
     return (
       <div>
         <p>Home sweet home</p>
@@ -64,17 +64,18 @@ const AppRouter = props => {
     );
   };
   return (
-    <div id='main-container'>
+    <div id="main-container">
       <Router>
         <Header />
         <Switch>
-          <Route exact path='/' component={Test} />
-          <Route exact path='/account' component={AccountProfile} />
-          <Route exact path='/login' component={Login} />
-          <Route exact path='/products' component={MainProducts} />
-          <Route exact path='/1' component={Computers} />
-          <Route exact path='/2' component={TypeWriters} />
-          <Route exact path='/3' component={DataDevices} />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/account" component={AccountProfile} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/products" component={MainProducts} />
+          <Route exact path="/1" component={Computers} />
+          <Route exact path="/2" component={TypeWriters} />
+          <Route exact path="/3" component={DataDevices} />
+          <Route component={Home} />
         </Switch>
       </Router>
     </div>
