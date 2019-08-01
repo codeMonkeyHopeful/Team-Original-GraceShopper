@@ -29,11 +29,13 @@ router.post('/login', (req, res, next) => {
         user_id: user.user_id,
       };
       req.session.isAdmin = user.isAdmin;
+      req.session.isLoggedIn = true;
       req.session.save(() => {
         res.status(201).json({
           email: user.email,
           profile: user.profile,
           isAdmin: user.isAdmin,
+          user_id: user.user_id,
         });
       });
     })
@@ -49,6 +51,24 @@ router.post('/logout', (req, res, next) => {
   });
 });
 
+// Route: GET to api/users/checklogin
+//Access: public
+router.get('/checklogin', (req, res, next) => {
+  if (req.session.isLoggedIn) {
+    User.findByPk(req.session.user.user_id, { include: [Profile] }).then(
+      user => {
+        res.status(201).json({
+          email: user.email,
+          profile: user.profile,
+          isAdmin: user.isAdmin,
+          user_id: user.user_id,
+        });
+      }
+    );
+  } else {
+    res.sendStatus(204);
+  }
+});
 // GET to api/users/:id
 // Access: private, admin only
 router.get('/:id', (req, res, next) => {
