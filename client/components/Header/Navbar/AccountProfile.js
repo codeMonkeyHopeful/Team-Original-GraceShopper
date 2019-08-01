@@ -1,39 +1,32 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import testProfile from '../../../../server/database/utils/seed/data/testProfile.js';
+import { ACCOUNT_PROFILE } from '../styles';
 
 const AccountProfile = props => {
   const { isLoggedIn } = props;
+  const { profile } = props.currentUser;
+
   if (!isLoggedIn) {
-    return <h2>Login Foo!</h2>;
+    return <h2>Please log in first.</h2>;
   } else {
     return (
-      <div
-        id="nav-link-account"
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          margin: '40px 100px 0 100px',
-          padding: '20px',
-        }}
-      >
+      <div id="nav-link-account" style={ACCOUNT_PROFILE}>
         <div id="profile-image">
-          <img src={testProfile.profile_pic_url} width="200px" />
+          <img src={profile.profile_pic_url} width="200px" />
         </div>
         <div id="profile-info" style={{ border: '2px navy dotted' }}>
-          Name: {testProfile.first_name} {testProfile.last_name}
+          Name: {profile.first_name} {profile.last_name}
           <br />
-          Phone Number: {testProfile.phone_number}
+          Phone Number: {profile.phone_number}
           <br />
           Address: <br />
-          {testProfile.street_address} <br />
-          {testProfile.city}, {testProfile.state} {testProfile.zipcode}
+          {profile.street_address} <br />
+          {profile.city}, {profile.state} {profile.zipcode}
         </div>
       </div>
     );
   }
 };
-const mapState = state => ({ isLoggedIn: state.isLoggedIn });
+const mapState = ({ isLoggedIn, currentUser }) => ({ isLoggedIn, currentUser });
 
 export default connect(mapState)(AccountProfile);

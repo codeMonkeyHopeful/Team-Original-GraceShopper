@@ -19,7 +19,7 @@ const DataDevices = props => {
       <div>
         {categories.map(category => {
           return (
-            <div>
+            <div key={category.name2}>
               <Link to={`/${category.pcid2}`}>{category.name2}</Link>
             </div>
           );
