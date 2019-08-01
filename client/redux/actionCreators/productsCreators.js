@@ -35,7 +35,7 @@ export const getAllProducts = () => {
     return axios
       .get('/api/products')
       .then(res => dispatch(gotAllProducts(res.data)))
-      .catch(next());
+      .catch(e => console.log(e));
   };
 };
 
@@ -43,6 +43,7 @@ export const getTopTierCategories = () => {
   return dispatch => {
     return axios
       .get('/api/categories/level1')
-      .then(res => dispatch(gotTopTierCats(res.data)));
+      .then(res => dispatch(gotTopTierCats(res.data)))
+      .catch(e => console.log(e));
   };
 };

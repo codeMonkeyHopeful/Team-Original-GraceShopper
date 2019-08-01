@@ -17,7 +17,12 @@ import TypeWriters from './Products/TypeWriters';
 
 import axios from 'axios';
 
-import { changeLoginStatus, gotUser } from './../redux';
+import {
+  changeLoginStatus,
+  gotUser,
+  getAllProducts,
+  getTopTierCategories,
+} from './../redux';
 
 const AppRouter = props => {
   const { changeLogin, setUserInfo } = props;
@@ -35,6 +40,11 @@ const AppRouter = props => {
       }
     })
     .catch(e => console.error(e));
+
+  //Pull in all products to store
+  props.getAllProds();
+  //Pull in all top tier categories to store
+  props.getTopTierCats();
 
   // remove Test component
 
@@ -67,6 +77,8 @@ const AppRouter = props => {
 const mapDispatch = dispatch => ({
   changeLogin: status => dispatch(changeLoginStatus(status)),
   setUserInfo: user => dispatch(gotUser(user)),
+  getAllProds: () => dispatch(getAllProducts()),
+  getTopTierCats: () => dispatch(getTopTierCategories()),
 });
 export default connect(
   null,
