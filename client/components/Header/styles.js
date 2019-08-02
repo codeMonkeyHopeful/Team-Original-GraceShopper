@@ -3,7 +3,6 @@ export const HEADER_CONTAINER = {
   flexDirection: 'column',
   alignItems: 'center',
   backgroundColor: '#0046be',
-  width: '100vw',
   color: 'white',
   fontFamily:
     'Human BBY Web,Arial,Helvetica,Nimbus Sans L,Liberation Sans,FreeSans,sans-serif',
