@@ -11,9 +11,6 @@ import Header from './Header/Header';
 import AccountProfile from './Header/Navbar/AccountProfile';
 import Login from './login/Login';
 import MainProducts from './Products/MainProducts';
-import DataDevices from './Products/DataDevices';
-import Computers from './Products/Computers';
-import TypeWriters from './Products/TypeWriters';
 
 import axios from 'axios';
 
@@ -22,6 +19,7 @@ import {
   gotUser,
   getAllProducts,
   getTopTierCategories,
+  getAllCategories,
 } from './../redux';
 
 const AppRouter = props => {
@@ -46,6 +44,8 @@ const AppRouter = props => {
   //Pull in all top tier categories to store
   props.getTopTierCats();
 
+  props.getAllCategories();
+
   // remove Test component
 
   const Home = () => {
@@ -64,10 +64,14 @@ const AppRouter = props => {
           <Route exact path="/account" component={AccountProfile} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/products" component={MainProducts} />
-          <Route exact path="/1" component={Computers} />
-          <Route exact path="/2" component={TypeWriters} />
-          <Route exact path="/3" component={DataDevices} />
-          <Route component={Home} />
+          <Route exact path="/products/:pc1" component={MainProducts} />
+          <Route exact path="/products/:pc1/:pc2" component={MainProducts} />
+          <Route
+            exact
+            path="/products/:pc1/:pc2/:pc3"
+            component={MainProducts}
+          />
+          <Redirect to="/" />
         </Switch>
       </Router>
     </div>
@@ -79,6 +83,7 @@ const mapDispatch = dispatch => ({
   setUserInfo: user => dispatch(gotUser(user)),
   getAllProds: () => dispatch(getAllProducts()),
   getTopTierCats: () => dispatch(getTopTierCategories()),
+  getAllCategories: () => dispatch(getAllCategories()),
 });
 export default connect(
   null,
