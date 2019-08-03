@@ -7,6 +7,7 @@ const User = require('./models/User');
 const ProductCategory = require('./models/ProductCategory');
 const Session = require('./models/Session');
 const Brand = require('./models/Brands');
+const Cart = require('./models/Cart');
 
 // export models here
 
@@ -22,6 +23,12 @@ User.hasMany(Session);
 Product.belongsTo(Brand);
 Brand.hasMany(Product);
 
+Cart.belongsTo(User);
+User.hasOne(Cart);
+
+Session.belongsTo(Cart);
+Cart.hasMany(Session);
+
 module.exports = {
   db,
   Profile,
@@ -31,4 +38,5 @@ module.exports = {
   ProductCategory,
   Session,
   Brand,
+  Cart,
 };
