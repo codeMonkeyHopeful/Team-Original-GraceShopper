@@ -14,7 +14,7 @@ const Searchbar = () => {
           />
           <button type="submit"> Search</button>
         </div>
-        <hr style={{ width: '100vw' }} />
+        <hr />
       </form>
     </div>
   );

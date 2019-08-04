@@ -15,3 +15,4 @@ export default store;
 // export all creator functions from one place
 export * from './actionCreators/currentUserCreators';
 export * from './actionCreators/isLoggedInCreators';
+export * from './actionCreators/productsCreators';
