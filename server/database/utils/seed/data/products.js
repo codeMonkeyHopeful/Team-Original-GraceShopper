@@ -84,6 +84,34 @@ const products = [
     brandId: 1, //update
     productCategoryId: 6,
   },
+  {
+    sku: '1111',
+    name: 'Intel DQ77MK G39642-500 Motherboard with I/O',
+    category: 'Computers',
+    parent_category_1: 1,
+    parent_category_2: 11,
+    parent_category_3: 111,
+    description:
+      'Wonderful new motherbord supporting Intel Pentium 2 latest technology CPU.  I/O shield will keep you motherboard clean from outside dust and unwanted dirt.',
+    price: 45.0,
+    image_url: '/images/products/motherboard1.jpg',
+    brandId: 1, //update
+    productCategoryId: 1,
+  },
+  {
+    sku: '1112',
+    name: 'Commodore 64 Motherboard - 250407 Revision',
+    category: 'Computers',
+    parent_category_1: 1,
+    parent_category_2: 11,
+    parent_category_3: 111,
+    description:
+      'This board does not include a PLA or SID chip and will require them for use. When a working PLA and SID are installed, the board was fully tested on the Commodore factory test harness which ensures all I/O ports and functions work 100% and it passed with flying colors. The board is missing the original backing shield. The side bracket on the right side near the joystick ports is included however. This board is an NTSC 250407 revision from 1983 or so.',
+    price: 54.99,
+    image_url: '/images/products/Commodore64.jpg',
+    brandId: 1, //update
+    productCategoryId: 1,
+  },
 ];
 
 module.exports = products;
