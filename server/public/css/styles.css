@@ -34,10 +34,37 @@ body {
 }
 
 .product-card-container img {
-  height: 15vh;
+  height: auto;
   width: auto;
+  max-height: 15vh;
+  max-width: 15vw;
 }
 
 .product-card-container > div {
   padding: 2vh 0 2vh 0;
+}
+
+#single-product-main-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+#single-product-info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#single-product-info-container img {
+  height: auto;
+  width: auto;
+  max-width: 30vw;
+  max-height: 30vh;
+}
+
+#single-product-form {
+  display: flex;
+  flex-direction: column;
 }

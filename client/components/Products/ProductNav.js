@@ -26,12 +26,16 @@ const ProductNav = props => {
           :
         </p>
       );
-      const currentLevelCats = allCategories[`pc${i + 1}`];
+
+      let currentLevelCats = allCategories[`pc${i + 1}`];
+
       const currentCatObj = currentLevelCats.find(
         cat => cat[`pcid${i + 1}`] === parseInt(currentCatId, 10)
       );
       let currentCatName = '';
-      if (currentLevelCats.length) {
+
+      // need to check if currentCatObj exists as well b/c of async calls to get allCategories
+      if (currentLevelCats.length && currentCatObj) {
         currentCatName = currentCatObj[`name${i + 1}`];
       }
 

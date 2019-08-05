@@ -1,16 +1,24 @@
 import React from 'react';
-
+import { connect } from 'react-redux';
 const AddToCartButton = props => {
-  const { productId } = props;
+  const { productId, qty, userId } = props;
   const handleSubmit = e => {
     e.preventDefault();
     if (!productId) {
-      console.log('no pid');
+      console.log('Error: no pid');
       return;
+    } else {
+      // code for adding to cart goes here
     }
-    console.log('adding ', productId, ' to cart');
+    // delete later
+    console.table({ 'userId ': userId, 'product id': productId, 'qty: ': qty });
   };
   return <button onClick={handleSubmit}>Add To Cart</button>;
 };
 
-export default AddToCartButton;
+const mapState = ({
+  currentUser: {
+    profile: { userId },
+  },
+}) => ({ userId });
+export default connect(mapState)(AddToCartButton);

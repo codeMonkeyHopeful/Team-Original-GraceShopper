@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getNextTierCategories, gotUpdatedCats } from '../../redux';
-
+import { Link } from 'react-router-dom';
 import ProductNav from './ProductNav';
 import CurrentCategories from './CurrentCategories';
 import ProductCard from './ProductCard';
@@ -94,7 +94,11 @@ const MainProducts = props => {
       />
       <div id="products-container">
         {currentProducts.map(prod => {
-          return <ProductCard product={prod} />;
+          return (
+            <Link to={`/products/single/${prod.id}`}>
+              <ProductCard product={prod} />
+            </Link>
+          );
         })}
       </div>
     </div>
