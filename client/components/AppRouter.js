@@ -6,13 +6,13 @@ import {
   Switch,
   Redirect,
 } from 'react-router-dom';
+import axios from 'axios';
 
 import Header from './Header/Header';
 import AccountProfile from './Header/Navbar/AccountProfile';
 import Login from './login/Login';
 import MainProducts from './Products/MainProducts';
-
-import axios from 'axios';
+import SingleProduct from './Products/SingleProduct';
 
 import {
   changeLoginStatus,
@@ -64,6 +64,7 @@ const AppRouter = props => {
           <Route exact path="/account" component={AccountProfile} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/products" component={MainProducts} />
+          <Route exact path="/products/single/:id" component={SingleProduct} />
           <Route exact path="/products/:pc1" component={MainProducts} />
           <Route exact path="/products/:pc1/:pc2" component={MainProducts} />
           <Route
