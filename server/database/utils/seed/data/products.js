@@ -112,6 +112,48 @@ const products = [
     brandId: 1, //update
     productCategoryId: 1,
   },
+  {
+    sku: '1113',
+    name: 'Apple IIe Motherboard Model 607-0187-C 820-0087-C',
+    category: 'Computers',
+    parent_category_1: 1,
+    parent_category_2: 11,
+    parent_category_3: 111,
+    description:
+      'This board came from a working system.  It is a little dusty, but that is all',
+    price: 99.99,
+    image_url: '/images/products/AppleII.jpg',
+    brandId: 1, //update
+    productCategoryId: 1,
+  },
+  {
+    sku: '1114',
+    name: 'Socket 5 133MHz Intel Pentium Computer Motherboard 8MB',
+    category: 'Computers',
+    parent_category_1: 1,
+    parent_category_2: 11,
+    parent_category_3: 111,
+    description:
+      'They are very clean, some have minor scuffing from storage. They are pretty bare bones, no onboard I/O (IDE, floppy, etc) except for AT keyboard connector. There are cache sockets but no cache included. Pictures are of actual boards and actual boards POSTing. I have tested each one to POST and display video. Bundle includes: motherboard, 133MHz Pentium CPU and 8MB RAM.',
+    price: 50.0,
+    image_url: '/images/products/1114.jpg',
+    brandId: 1, //update
+    productCategoryId: 1,
+  },
+  {
+    sku: '1115',
+    name: 'Motherboard Intel ASRock P4i45D Socket 478 Vintage Legacy DDR SDRAM',
+    category: 'Computers',
+    parent_category_1: 1,
+    parent_category_2: 11,
+    parent_category_3: 111,
+    description:
+      'OEM motherboard from board partners. The brands may vary from the image shown  but all motherboards in tis section are 100% working and will take most Intel CPUs (sold seperately).',
+    price: 25.0,
+    image_url: '/images/products/1115.jpg',
+    brandId: 1, //update
+    productCategoryId: 1,
+  },
 ];
 
 module.exports = products;
