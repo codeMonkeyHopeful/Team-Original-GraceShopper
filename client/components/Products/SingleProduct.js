@@ -6,6 +6,8 @@ import AddToCartButton from './AddToCartButton';
 
 const SingleProduct = props => {
   const [productInfo, setProductInfo] = useState({});
+  const [qty, setQty] = useState(1);
+
   const productId = props.match.params.id;
   const { allProducts, allCategories } = props;
   const params = {
@@ -13,6 +15,11 @@ const SingleProduct = props => {
     pc2: productInfo.parent_category_2,
     pc3: productInfo.parent_category_3,
   };
+
+  // ProductNav component breaks if pc2 and pc3 are the same
+  if (params.pc3 === params.pc2) {
+    params.pc3 = null;
+  }
 
   useEffect(() => {
     const foundInfo = allProducts.find(prod => prod.id === parseInt(productId));
@@ -26,13 +33,30 @@ const SingleProduct = props => {
   return (
     <div>
       <ProductNav allCategories={allCategories} params={params} />
-      <h1>
-        {productInfo.name} ${productInfo.price}
-      </h1>
-      <img src={productInfo.image_url} alt="product image" />
-      <h2>Description:</h2>
-      <p>{productInfo.description}</p>
-      <AddToCartButton productId={productInfo.id} />
+      <div id="single-product-main-container">
+        <div id="single-product-info-container">
+          <h1>
+            {productInfo.name} ${productInfo.price}
+          </h1>
+          <img src={productInfo.image_url} alt="product image" />
+          <h2>Description:</h2>
+          <p>{productInfo.description}</p>
+        </div>
+        <div id="single-product-form">
+          <div>
+            <label htmlFor="qty">Qty: </label>
+            <input
+              type="number"
+              name="qty"
+              value={qty}
+              onChange={e => {
+                setQty(e.target.value);
+              }}
+            />
+          </div>
+          <AddToCartButton productId={productInfo.id} qty={qty} />
+        </div>
+      </div>
     </div>
   );
 };
