@@ -62,6 +62,7 @@ const AppRouter = props => {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/account" component={AccountProfile} />
+          <Route exact path="/cart" component={Cart} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/products" component={MainProducts} />
           <Route exact path="/products/single/:id" component={SingleProduct} />
