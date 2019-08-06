@@ -154,6 +154,20 @@ const products = [
     brandId: 1, //update
     productCategoryId: 1,
   },
+  {
+    sku: '1116',
+    name: 'Sony Vaio ASUS ATX 478 3+1 PCI AGP Motherboard P4SD-VL And Cooler',
+    category: 'Computers',
+    parent_category_1: 1,
+    parent_category_2: 11,
+    parent_category_3: 111,
+    description:
+      'Motherboard was pulled form a working unit. Has a 2.6Ghz Pentium 4 with the cooler as well. No I/O Sheild included. 800Mhz Front Side Bus, Intel 865 Chipset, socket 478, x3 PCI Slots, 1 AGP 4/8X slot, 2 ATA/IDE Floppy, 4 USB 2.0, On board Lan, Fire Wire, PS2 Keyboard/ Mouse/ Serial Port/ Printer Port, Power Supply Connection: ATX 20-Pin + 4. Boards capacitors and tracers look good with no real signs of damage or wear. The board is a little dusty but thats it. Please see the photos.',
+    price: 25.0,
+    image_url: '/images/products/1115.jpg',
+    brandId: 1, //update
+    productCategoryId: 1,
+  },
 ];
 
 module.exports = products;
