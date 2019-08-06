@@ -7,6 +7,7 @@ const {
   User,
   ProductCategory,
   Brand,
+  Cart,
 } = require('../../index');
 
 const usersSeed = require('./data/users');
