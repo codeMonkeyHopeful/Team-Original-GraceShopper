@@ -54,14 +54,3 @@ export const COMPANY_NAME = {
 export const NAV_IMAGE = {
   width: '12px',
 };
-
-export const CART_CONTAINER = {
-  disply: 'flex',
-  justifyContent: 'center',
-};
-
-export const CART_ITEMS_TITLE = {
-  display: 'flex',
-  border: '5px solid grey',
-  padding: '2px',
-};

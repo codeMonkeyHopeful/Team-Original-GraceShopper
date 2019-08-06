@@ -13,7 +13,7 @@ import AccountProfile from './Header/Navbar/AccountProfile';
 import Login from './login/Login';
 import MainProducts from './Products/MainProducts';
 import SingleProduct from './Products/SingleProduct';
-import Cart from './Header/Navbar/Cart';
+import Cart from './Cart/Cart';
 
 import {
   changeLoginStatus,

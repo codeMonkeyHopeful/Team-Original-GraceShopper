@@ -68,3 +68,25 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+th,
+tr {
+  padding: 10px;
+  border: solid 1px;
+  text-align: center;
+}
+
+.fixed {
+  table-layout: fixed;
+}
+
+table,
+td,
+tbody,
+th {
+  border-collapse: collapse;
+}
+
+table {
+  width: 100%;
+}
