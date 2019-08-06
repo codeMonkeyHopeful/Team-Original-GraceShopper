@@ -12,9 +12,10 @@ const userCreator = (userObj = {}) => {
   // if userObj has entries they will overwrite the defaults
   const user = Object.assign({}, { email, password, isAdmin }, userObj);
   return User.create(user).then(user => {
-    return Cart.create({ userId: user.id }).then(res => {
-      return res;
-    });
+    // return Cart.create({ userId: user.id }).then(res => {
+    //   return res;
+    // });
+    return user;
   });
 };
 module.exports = userCreator;
