@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { CART_ITEMS_TITLE, CART_CONTAINER } from '../styles';
 
 const Cart = props => {
-  console.log(props);
+  console.log('props from cart route', props);
   return (
     <div id="cart-component" style={CART_CONTAINER}>
       <h2 id="cart-title">Cart</h2>
@@ -15,6 +15,6 @@ const Cart = props => {
   );
 };
 
-const mapState = ({ currentUser }) => ({ currentUser });
+const mapState = ({ currentUser, cart }) => ({ currentUser, cart });
 
 export default connect(mapState)(Cart);

@@ -1,18 +1,24 @@
-import { ADD_TO_CART, GET_USER_CART } from '../actionCreators/cartCreators';
+import { ADD_TO_CART } from '../actionCreators/cartCreators';
 
 const initialState = {
-  productId: '',
-  quantity: 0,
-  userId: '',
+  cart: [],
 };
 
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_CART: {
-      return { ...state, productId: action.productId };
-    }
-    case GET_USER_CART: {
-      return { ...state, userId: action.id };
+      const wasFound = false;
+      const newCart = state.cart.map(product => {
+        const newProduct = Object.assign({}, product);
+        if (action.pid === product.id) {
+          newProduct.qty += action.qty;
+          wasFound = true;
+        }
+      });
+      if (!wasFound) {
+        newCart.push(action.pid, action.qty, action.price);
+      }
+      return { ...state, cart: newCart };
     }
     default:
       return state;
