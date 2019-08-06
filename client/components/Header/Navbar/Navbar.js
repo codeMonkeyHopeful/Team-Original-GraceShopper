@@ -32,7 +32,7 @@ const Navbar = () => {
         {navbarButtons.map(button => {
           if (button === 'cart') {
             return (
-              <NavLink key={button} to={button} style={NAV_LINK}>
+              <NavLink key={button} to={`/${button}`} style={NAV_LINK}>
                 <button>
                   {cartImage} {button[0].toUpperCase()}
                   {button.slice(1)}
@@ -42,7 +42,7 @@ const Navbar = () => {
             );
           } else {
             return (
-              <NavLink key={button} to={button} style={NAV_LINK}>
+              <NavLink key={button} to={`/${button}`} style={NAV_LINK}>
                 <button>
                   {button[0].toUpperCase()}
                   {button.slice(1)}

@@ -9,9 +9,14 @@ const AddToCartButton = props => {
       return;
     } else {
       // code for adding to cart goes here
+
+      // userId will be undefined if not logged in. Check for that on the api route and use sessionId instead if not logged in
+      console.table({
+        'userId ': userId,
+        'product id': productId,
+        'qty: ': qty,
+      });
     }
-    // delete later
-    console.table({ 'userId ': userId, 'product id': productId, 'qty: ': qty });
   };
   return <button onClick={handleSubmit}>Add To Cart</button>;
 };
