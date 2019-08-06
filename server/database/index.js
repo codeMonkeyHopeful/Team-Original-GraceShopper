@@ -24,10 +24,10 @@ Product.belongsTo(Brand);
 Brand.hasMany(Product);
 
 Cart.belongsTo(User);
-User.hasOne(Cart);
+User.hasMany(Cart);
 
-Session.belongsTo(Cart);
-Cart.hasMany(Session);
+Cart.belongsTo(Session);
+Session.hasMany(Cart);
 
 Cart.belongsTo(Product);
 Product.hasMany(Cart);

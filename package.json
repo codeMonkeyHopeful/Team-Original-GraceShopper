@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --runInBand",
+    "test-watch": "jest --watch",
     "start": "node server/index.js",
     "start-server:dev": "./node_modules/.bin/nodemon ./server/index.js",
     "build": "webpack --mode=\"production\"",
@@ -54,6 +55,7 @@
     "jest": "^24.8.0",
     "jest-cli": "^24.8.0",
     "nodemon": "^1.19.1",
+    "react-test-renderer": "^16.8.6",
     "redux-logger": "^3.0.6",
     "webpack": "^4.39.0",
     "webpack-cli": "^3.3.6"
