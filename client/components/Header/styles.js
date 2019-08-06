@@ -64,4 +64,11 @@ export const CART_ITEMS_TITLE = {
   display: 'flex',
   border: '5px solid grey',
   padding: '2px',
+  margin: '0 200px 0 200px',
+};
+
+export const CARTEGORIES = {
+  display: 'flex',
+  marginLeft: '200px',
+  flexDirection: 'column',
 };
