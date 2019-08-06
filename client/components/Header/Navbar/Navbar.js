@@ -18,12 +18,12 @@ const Navbar = () => {
     <div id="nav-links-container" style={NAV_LINKS_CONTAINER}>
       <div id="nav-products-container">
         {/* modals */}
-        <a href="/products" style={PRODUCT_MODAL}>
-          Products
-        </a>
-        <a href="/brands" style={PRODUCT_MODAL}>
-          Brands
-        </a>
+        <NavLink to="/products" style={PRODUCT_MODAL}>
+          <button>Products</button>
+        </NavLink>
+        <NavLink to="/brands" style={PRODUCT_MODAL}>
+          <button>Brands</button>
+        </NavLink>
       </div>
       <div id="nav-account-links-container" style={NAV_ACCOUNT_LINKS_CONTAINER}>
         {/* login status should come from redux */}
