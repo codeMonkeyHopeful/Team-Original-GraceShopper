@@ -10,7 +10,7 @@ const ProductCard = props => {
       <img src={image_url} alt="product image" />
       <div>
         <p>${price}</p>
-        <AddToCartButton productId={id} qty={1} />
+        <AddToCartButton productId={id} qty={1} price={price} />
       </div>
     </div>
   );

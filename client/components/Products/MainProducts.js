@@ -95,7 +95,7 @@ const MainProducts = props => {
       <div id="products-container">
         {currentProducts.map(prod => {
           return (
-            <Link to={`/products/single/${prod.id}`}>
+            <Link key={prod.id} to={`/products/single/${prod.id}`}>
               <ProductCard product={prod} />
             </Link>
           );

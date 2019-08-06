@@ -23,6 +23,15 @@ User.hasMany(Session);
 Product.belongsTo(Brand);
 Brand.hasMany(Product);
 
+Cart.belongsTo(User);
+User.hasOne(Cart);
+
+Session.belongsTo(Cart);
+Cart.hasMany(Session);
+
+Cart.belongsTo(Product);
+Product.hasMany(Cart);
+
 module.exports = {
   db,
   Profile,
