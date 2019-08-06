@@ -32,3 +32,15 @@ export const loginThunk = (email, password) => {
       });
   };
 };
+
+export const logoutThunk = () => {
+  return dispatch =>
+    axios
+      .post('/api/users/logout')
+      .then(() => {
+        dispatch(logoutUser());
+      })
+      .catch(e => {
+        throw new Error('log out error');
+      });
+};

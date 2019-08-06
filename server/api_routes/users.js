@@ -47,7 +47,7 @@ router.post('/login', (req, res, next) => {
 router.post('/logout', (req, res, next) => {
   // save cart to db
   req.session.destroy(() => {
-    res.send('user logged out');
+    res.status(200).send({ message: 'successfully logged out' });
   });
 });
 

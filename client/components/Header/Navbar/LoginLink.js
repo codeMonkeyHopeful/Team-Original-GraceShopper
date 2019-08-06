@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { changeLoginStatus, logoutUser } from './../../../redux';
+import { changeLoginStatus, logoutThunk } from './../../../redux';
 
 import { NAV_LINK } from './../styles';
 
@@ -12,7 +12,6 @@ const handleLoginClick = (isLoggedIn, changeStatus, logOut) => {
     changeStatus(false);
     logOut();
   }
-  // only for testing. delete when login page is up
 };
 
 const renderLogin = (isLoggedIn, changeStatus, logOut) => {
@@ -57,7 +56,7 @@ const mapDispatch = dispatch => ({
     dispatch(changeLoginStatus(status));
   },
   logOut: () => {
-    [dispatch(logoutUser())];
+    dispatch(logoutThunk());
   },
 });
 
