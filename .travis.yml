@@ -2,9 +2,9 @@ language: node_js
 
 node_js:
   - '10'
-#branches:
-# only:
-#    - dev
+branches:
+  only:
+    - dev
 before_script:
   - psql -c 'create database grace_shopper;' -U postgres
 #deploy:
