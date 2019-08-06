@@ -47,7 +47,7 @@ router.post('/', (req, res, next) => {
     cart.map(({ product, qty }) => {
       const productId = product.id;
       return Cart.findOrCreate({
-        where: { userId, productId },
+        where: { userId, productId, purchased: false },
         defaults: { product, qty, price: product.price },
       });
     })
