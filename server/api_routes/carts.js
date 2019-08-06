@@ -36,19 +36,35 @@ router.get('/:id', (req, res, next) => {
 // POST to api/carts
 // Access: public
 router.post('/', (req, res, next) => {
-  const { userId } = req.body;
   const { body } = req;
   console.log('body', body);
-  return Cart.findOrCreate({ where: { userId }, defaults: { body } })
-    .then(([cart, created]) => {
-      if (cart) {
-        return Cart.update({ body }, { where: { cart } }).then(() => {
-          res.sendStatus(204);
-        });
-      } else {
-        res.sendStatus(201);
-      }
+  let userId = null;
+  if (req.session.user) {
+    userId = req.session.user.user_id;
+  }
+  const cart = req.body.cart;
+  return Promise.all(
+    cart.map(({ product, qty }) => {
+      const productId = product.id;
+      return Cart.findOrCreate({
+        where: { userId, productId },
+        defaults: { product, qty, price: product.price },
+      });
     })
+  )
+    .then(returnedCart => {
+      return Promise.all(
+        returnedCart.map(([product, created], i) => {
+          const reduxProduct = cart[i];
+          if (!created && product.qty !== reduxProduct.qty) {
+            return product.update({ qty: reduxProduct.qty });
+          } else {
+            return Promise.resolve();
+          }
+        })
+      );
+    })
+    .then(() => res.sendStatus(200))
     .catch(next);
 });
 

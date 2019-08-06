@@ -21,7 +21,6 @@ export const gotCart = cart => {
 };
 
 // thunks
-
 export const getCartThunk = () => {
   return dispatch => {
     return axios

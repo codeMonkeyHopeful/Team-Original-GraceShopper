@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { ADD_TO_CART, GOT_CART } from '../actionCreators/cartCreators';
 
 const initialState = {
@@ -20,11 +21,21 @@ const newCartToReducer = (cart, product, qty) => {
   return { cart: newCart };
 };
 
+const updateCartToDb = cart => {
+  return axios
+    .post('/api/carts', cart)
+    .then(() => {
+      console.log('DB updated cart');
+    })
+    .catch(() => console.log('Error updating cart to db!'));
+};
+
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_CART: {
       const { product, qty } = action;
       const updatedCart = newCartToReducer(state.cart, product, qty);
+      updateCartToDb(updatedCart);
 
       return updatedCart;
     }
