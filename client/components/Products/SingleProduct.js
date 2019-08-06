@@ -54,7 +54,7 @@ const SingleProduct = props => {
               }}
             />
           </div>
-          <AddToCartButton productId={productInfo.id} qty={qty} />
+          <AddToCartButton productInfo={productInfo} qty={Number(qty)} />
         </div>
       </div>
     </div>

@@ -4,12 +4,11 @@ import axios from 'axios';
 export const ADD_TO_CART = 'ADD_TO_CART';
 
 // action creators
-export const addToCart = (pid, qty, price) => {
+export const addToCart = (product, qty) => {
   return {
     type: ADD_TO_CART,
-    pid,
+    product,
     qty,
-    price,
   };
 };
 

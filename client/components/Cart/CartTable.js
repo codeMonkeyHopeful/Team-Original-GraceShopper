@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 const CartTable = props => {
   const { cart } = props.cart;
+  console.log('cartTab;le', cart);
   if (cart.length === 0) {
     return <h3>Nothing in your cart yet. Get shopping!</h3>;
   }
@@ -15,21 +16,36 @@ const CartTable = props => {
           <th>QUANTITY</th>
           <th>PRICE</th>
         </tr>
-        {cart.map(({ pid, qty, price }) => {
-          total += Number(price);
+        {cart.map(({ product, qty }) => {
+          const { id, name, price, image_url } = product;
+          total += Number(price) * qty;
           return (
-            <tr key={pid}>
-              <td>{pid}</td>
+            <tr key={id}>
+              <td
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                }}
+              >
+                <img
+                  src={image_url}
+                  style={{ width: '30px', marginRight: '30px' }}
+                />
+                <div>{name}</div>
+              </td>
               <td>{qty}</td>
-              <td>{price}</td>
+              <td>${price}</td>
             </tr>
           );
         })}
         <tr />
-        <tr>
-          <td>TOTAL</td>
-          <td />
-          <td>{total}</td>
+        <tr height="9px" />
+        <tr id="total-row">
+          <td>
+            <b>TOTAL</b>
+          </td>
+          <td id="total-middle" />
+          <td id="total-amount">${total.toFixed(2)}</td>
         </tr>
       </tbody>
     </table>
