@@ -112,6 +112,62 @@ const products = [
     brandId: 1, //update
     productCategoryId: 1,
   },
+  {
+    sku: '1113',
+    name: 'Apple IIe Motherboard Model 607-0187-C 820-0087-C',
+    category: 'Computers',
+    parent_category_1: 1,
+    parent_category_2: 11,
+    parent_category_3: 111,
+    description:
+      'This board came from a working system.  It is a little dusty, but that is all',
+    price: 99.99,
+    image_url: '/images/products/AppleII.jpg',
+    brandId: 1, //update
+    productCategoryId: 1,
+  },
+  {
+    sku: '1114',
+    name: 'Socket 5 133MHz Intel Pentium Computer Motherboard 8MB',
+    category: 'Computers',
+    parent_category_1: 1,
+    parent_category_2: 11,
+    parent_category_3: 111,
+    description:
+      'They are very clean, some have minor scuffing from storage. They are pretty bare bones, no onboard I/O (IDE, floppy, etc) except for AT keyboard connector. There are cache sockets but no cache included. Pictures are of actual boards and actual boards POSTing. I have tested each one to POST and display video. Bundle includes: motherboard, 133MHz Pentium CPU and 8MB RAM.',
+    price: 50.0,
+    image_url: '/images/products/1114.jpg',
+    brandId: 1, //update
+    productCategoryId: 1,
+  },
+  {
+    sku: '1115',
+    name: 'Motherboard Intel ASRock P4i45D Socket 478 Vintage Legacy DDR SDRAM',
+    category: 'Computers',
+    parent_category_1: 1,
+    parent_category_2: 11,
+    parent_category_3: 111,
+    description:
+      'OEM motherboard from board partners. The brands may vary from the image shown  but all motherboards in tis section are 100% working and will take most Intel CPUs (sold seperately).',
+    price: 25.0,
+    image_url: '/images/products/1115.jpg',
+    brandId: 1, //update
+    productCategoryId: 1,
+  },
+  {
+    sku: '1116',
+    name: 'Sony Vaio ASUS ATX 478 3+1 PCI AGP Motherboard P4SD-VL And Cooler',
+    category: 'Computers',
+    parent_category_1: 1,
+    parent_category_2: 11,
+    parent_category_3: 111,
+    description:
+      'Motherboard was pulled form a working unit. Has a 2.6Ghz Pentium 4 with the cooler as well. No I/O Sheild included. 800Mhz Front Side Bus, Intel 865 Chipset, socket 478, x3 PCI Slots, 1 AGP 4/8X slot, 2 ATA/IDE Floppy, 4 USB 2.0, On board Lan, Fire Wire, PS2 Keyboard/ Mouse/ Serial Port/ Printer Port, Power Supply Connection: ATX 20-Pin + 4. Boards capacitors and tracers look good with no real signs of damage or wear. The board is a little dusty but thats it. Please see the photos.',
+    price: 25.0,
+    image_url: '/images/products/1115.jpg',
+    brandId: 1, //update
+    productCategoryId: 1,
+  },
 ];
 
 module.exports = products;
