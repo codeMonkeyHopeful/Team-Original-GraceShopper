@@ -28,6 +28,7 @@ export const getCartThunk = () => {
       .get('/api/carts')
       .then(res => res.data)
       .then(cart => {
+        console.log('cart from db', cart);
         dispatch(gotCart(cart));
       });
   };

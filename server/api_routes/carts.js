@@ -4,21 +4,15 @@ const { Cart, Product } = require('../database/index.js');
 // GET to api/carts/
 // Access: private, admin only
 router.get('/', (req, res, next) => {
-  if (req.session && req.session.isAdmin) {
-    console.log(req.session);
-    return Cart.findAll({ include: [Product] })
-      .then(carts => {
-        res.json([
-          {
-            product: { id: 3, name: 'New Product' },
-            qty: 3,
-          },
-        ]);
-      })
-      .catch(next);
-  } else {
-    res.sendStatus(401);
+  let userId = null;
+  if (req.session.user) {
+    userId = req.session.user.user_id;
   }
+  return Cart.findAll({ where: { userId }, include: [Product] })
+    .then(cart => {
+      res.json(cart);
+    })
+    .catch(next);
 });
 
 // GET to api/carts/:id

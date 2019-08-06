@@ -11,12 +11,13 @@ const newCartToReducer = (cart, product, qty) => {
     if (newProduct.product.id === product.id) {
       newProduct.qty += qty;
       wasFound = true;
-      return newProduct;
     }
     return newProduct;
   });
-  if (!wasFound) return wasFound;
-  else return newCart;
+  if (!wasFound) {
+    newCart.push({ product, qty });
+  }
+  return { cart: newCart };
 };
 
 const cartReducer = (state = initialState, action) => {
@@ -25,25 +26,7 @@ const cartReducer = (state = initialState, action) => {
       const { product, qty } = action;
       const updatedCart = newCartToReducer(state.cart, product, qty);
 
-      if (!updatedCart) return { cart: [...state.cart, { product, qty }] };
-      else return { ...state, cart: updatedCart };
-      // This part moved up to helper function:
-
-      // let wasFound = false;
-      // const newCart = state.cart.map(product => {
-      //   const newProduct = Object.assign({}, product);
-      //   if (newProduct.pid === pid) {
-      //     newProduct.qty += qty;
-      //     wasFound = true;
-      //     return newProduct;
-      //   }
-      //   return newProduct;
-      // });
-      // if (!wasFound) {
-      //   return {
-      //     cart: [...state.cart, { pid, qty, price }]}
-      // }
-      // return {...state,cart: newCart}
+      return updatedCart;
     }
     case GOT_CART: {
       return { cart: action.cart };
