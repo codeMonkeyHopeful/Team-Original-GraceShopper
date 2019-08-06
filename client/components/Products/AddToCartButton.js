@@ -20,6 +20,7 @@ const AddToCartButton = props => {
       // });
     }
   };
+
   return <button onClick={handleSubmit}>Add To Cart</button>;
 };
 
