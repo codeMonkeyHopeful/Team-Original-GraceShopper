@@ -3,20 +3,6 @@ const Sequelize = require('sequelize');
 const db = require('../db');
 
 const Cart = db.define('cart', {
-  userId: {
-    type: Sequelize.INTEGER,
-  },
-  sessionId: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
-  },
-  pid: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-  },
   qty: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -39,6 +25,5 @@ const Cart = db.define('cart', {
     defaultValue: Date.now(),
   },
 });
-
 
 module.exports = Cart;
