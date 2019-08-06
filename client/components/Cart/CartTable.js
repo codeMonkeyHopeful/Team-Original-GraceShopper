@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { CART_TABLE } from '../styles';
 
 const CartTable = props => {
   const { cart } = props.cart;

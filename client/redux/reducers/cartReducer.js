@@ -2,6 +2,7 @@ import { ADD_TO_CART } from '../actionCreators/cartCreators';
 
 const initialState = {
   cart: [],
+  product: {},
 };
 
 const cartReducer = (state = initialState, action) => {
