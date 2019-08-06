@@ -7,7 +7,14 @@ router.get('/', (req, res, next) => {
   if (req.session && req.session.isAdmin) {
     console.log(req.session);
     return Cart.findAll({ include: [Product] })
-      .then(carts => res.json(carts))
+      .then(carts => {
+        res.json([
+          {
+            product: { id: 3, name: 'New Product' },
+            qty: 3,
+          },
+        ]);
+      })
       .catch(next);
   } else {
     res.sendStatus(401);

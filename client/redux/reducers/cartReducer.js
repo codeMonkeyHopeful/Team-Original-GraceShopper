@@ -1,4 +1,4 @@
-import { ADD_TO_CART } from '../actionCreators/cartCreators';
+import { ADD_TO_CART, GOT_CART } from '../actionCreators/cartCreators';
 
 const initialState = {
   cart: [],
@@ -27,6 +27,8 @@ const cartReducer = (state = initialState, action) => {
 
       if (!updatedCart) return { cart: [...state.cart, { product, qty }] };
       else return { ...state, cart: updatedCart };
+      // This part moved up to helper function:
+
       // let wasFound = false;
       // const newCart = state.cart.map(product => {
       //   const newProduct = Object.assign({}, product);
@@ -39,13 +41,12 @@ const cartReducer = (state = initialState, action) => {
       // });
       // if (!wasFound) {
       //   return {
-      //     cart: [...state.cart, { pid, qty, price }],
-      //   };
+      //     cart: [...state.cart, { pid, qty, price }]}
       // }
-      // return {
-      //   ...state,
-      //   cart: newCart,
-      // };
+      // return {...state,cart: newCart}
+    }
+    case GOT_CART: {
+      return { cart: action.cart };
     }
     default:
       return state;
