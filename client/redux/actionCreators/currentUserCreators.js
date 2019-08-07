@@ -14,7 +14,7 @@ export const logoutUser = () => {
 };
 
 import { changeLoginStatus } from './isLoggedInCreators';
-import { clearCart } from './cartCreators';
+import { clearCart, getCartThunk } from './cartCreators';
 // thunks
 export const loginThunk = (email, password) => {
   return dispatch => {
@@ -23,6 +23,7 @@ export const loginThunk = (email, password) => {
       .then(res => {
         const user = res.data;
         // clear error if login is successful
+        dispatch(getCartThunk());
         dispatch(gotUser({ ...user, error: '' }));
         dispatch(changeLoginStatus(true));
       })
