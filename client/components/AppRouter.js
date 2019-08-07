@@ -22,6 +22,7 @@ import {
   getAllProducts,
   getTopTierCategories,
   getAllCategories,
+  getCartThunk,
 } from './../redux';
 
 const AppRouter = props => {
@@ -48,6 +49,7 @@ const AppRouter = props => {
 
   props.getAllCategories();
 
+  props.getCartThunk();
   // remove Test component
 
   const Home = () => {
@@ -89,6 +91,7 @@ const mapDispatch = dispatch => ({
   getAllProds: () => dispatch(getAllProducts()),
   getTopTierCats: () => dispatch(getTopTierCategories()),
   getAllCategories: () => dispatch(getAllCategories()),
+  getCartThunk: () => dispatch(getCartThunk()),
 });
 export default connect(
   null,

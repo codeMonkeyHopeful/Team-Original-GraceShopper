@@ -4,14 +4,15 @@ const { Cart, Product } = require('../database/index.js');
 // GET to api/carts/
 // Access: private, admin only
 router.get('/', (req, res, next) => {
-  if (req.session && req.session.isAdmin) {
-    console.log(req.session);
-    return Cart.findAll({ include: [Product] })
-      .then(carts => res.json(carts))
-      .catch(next);
-  } else {
-    res.sendStatus(401);
+  let userId = null;
+  if (req.session.user) {
+    userId = req.session.user.user_id;
   }
+  return Cart.findAll({ where: { userId }, include: [Product] })
+    .then(cart => {
+      res.json(cart);
+    })
+    .catch(next);
 });
 
 // GET to api/carts/:id
@@ -35,19 +36,35 @@ router.get('/:id', (req, res, next) => {
 // POST to api/carts
 // Access: public
 router.post('/', (req, res, next) => {
-  const { userId } = req.body;
   const { body } = req;
   console.log('body', body);
-  return Cart.findOrCreate({ where: { userId }, defaults: { body } })
-    .then(([cart, created]) => {
-      if (cart) {
-        return Cart.update({ body }, { where: { cart } }).then(() => {
-          res.sendStatus(204);
-        });
-      } else {
-        res.sendStatus(201);
-      }
+  let userId = null;
+  if (req.session.user) {
+    userId = req.session.user.user_id;
+  }
+  const cart = req.body.cart;
+  return Promise.all(
+    cart.map(({ product, qty }) => {
+      const productId = product.id;
+      return Cart.findOrCreate({
+        where: { userId, productId, purchased: false },
+        defaults: { product, qty, price: product.price },
+      });
     })
+  )
+    .then(returnedCart => {
+      return Promise.all(
+        returnedCart.map(([product, created], i) => {
+          const reduxProduct = cart[i];
+          if (!created && product.qty !== reduxProduct.qty) {
+            return product.update({ qty: reduxProduct.qty });
+          } else {
+            return Promise.resolve();
+          }
+        })
+      );
+    })
+    .then(() => res.sendStatus(200))
     .catch(next);
 });
 
