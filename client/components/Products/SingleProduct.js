@@ -49,6 +49,7 @@ const SingleProduct = props => {
               type="number"
               name="qty"
               value={qty}
+              min="1"
               onChange={e => {
                 setQty(e.target.value);
               }}
