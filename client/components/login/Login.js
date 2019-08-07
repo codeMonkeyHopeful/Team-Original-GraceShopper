@@ -59,6 +59,9 @@ const mapState = state => ({
   error: state.currentUser.error,
   isLoggedIn: state.isLoggedIn,
 });
+
+// todo:
+// add current cart(non-logged in) to cart db and call the getCart thunk.
 const mapDispatch = dispatch => ({
   login: (email, password) => {
     dispatch(loginThunk(email, password));

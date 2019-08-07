@@ -3,6 +3,7 @@ import axios from 'axios';
 // action  constants
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const GOT_CART = 'GOT_CART';
+export const CLEAR_CART = 'CLEAR_CART';
 
 // action creators
 export const addToCart = (product, qty) => {
@@ -18,6 +19,10 @@ export const gotCart = cart => {
     type: GOT_CART,
     cart,
   };
+};
+
+export const clearCart = () => {
+  return { type: CLEAR_CART };
 };
 
 // thunks

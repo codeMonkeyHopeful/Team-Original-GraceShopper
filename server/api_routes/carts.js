@@ -5,12 +5,23 @@ const { Cart, Product } = require('../database/index.js');
 // Access: private, admin only
 router.get('/', (req, res, next) => {
   let userId = null;
+  let sessionId = req.session.id;
+  sessionId = sessionId.replace(/-/g, '');
+  const queryObj = { where: {}, include: [Product] };
+
+  // check for user
   if (req.session.user) {
     userId = req.session.user.user_id;
+    queryObj.where.userId = userId;
   }
-  return Cart.findAll({ where: { userId }, include: [Product] })
+  // use sessionId instead
+  if (!userId) {
+    console.log('using session id', sessionId);
+    queryObj.where.sessionSid = sessionId;
+  }
+  return Cart.findAll(queryObj)
     .then(cart => {
-      res.json(cart);
+      return res.json(cart);
     })
     .catch(next);
 });
@@ -38,17 +49,24 @@ router.get('/:id', (req, res, next) => {
 router.post('/', (req, res, next) => {
   const { body } = req;
   console.log('body', body);
+  const whereObj = { purchased: false };
   let userId = null;
   if (req.session.user) {
     userId = req.session.user.user_id;
+    whereObj.userId = userId;
+  }
+  if (!userId) {
+    sessionId = req.sessionID.replace(/-/g, '');
+    whereObj.sessionSid = sessionId;
   }
   const cart = req.body.cart;
   return Promise.all(
     cart.map(({ product, qty }) => {
       const productId = product.id;
+      whereObj.productId = productId;
       return Cart.findOrCreate({
-        where: { userId, productId, purchased: false },
-        defaults: { product, qty, price: product.price },
+        where: whereObj,
+        defaults: { qty, price: product.price },
       });
     })
   )
