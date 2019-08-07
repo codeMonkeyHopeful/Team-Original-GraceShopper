@@ -28,7 +28,7 @@ body {
   border-radius: 5%;
   margin: 1vw;
   width: 15vw;
-  height: 30vh;
+  height: 40vh;
   align-items: center;
   text-align: center;
 }
@@ -42,6 +42,11 @@ body {
 
 .product-card-container > div {
   padding: 2vh 0 2vh 0;
+}
+
+.product-card-title {
+  max-height: 5vh;
+  margin: 0;
 }
 
 #single-product-main-container {
