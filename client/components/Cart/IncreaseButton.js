@@ -7,11 +7,6 @@ const IncreaseButton = props => {
   return <button style={UPDATE_BUTTONS}>+</button>;
 };
 
-// const DecreaseButton = props => {
-//   const { cart } = props.cart;
-//   return <button style={UPDATE_BUTTONS}>-</button>;
-// };
-
 const mapState = ({ cart }) => ({ cart });
 
 export default connect(mapState)(IncreaseButton);
