@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import IncreaseButton from './IncreaseButton';
+import DecreaseButton from './DecreaseButton';
 
 const CartTable = props => {
   const { cart } = props.cart;
@@ -33,7 +35,11 @@ const CartTable = props => {
                 />
                 <div>{name}</div>
               </td>
-              <td>{qty}</td>
+              <td>
+                <IncreaseButton /> &nbsp;
+                {qty} &nbsp;
+                <DecreaseButton />
+              </td>
               <td>${price}</td>
             </tr>
           );
