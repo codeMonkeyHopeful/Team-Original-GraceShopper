@@ -14,6 +14,7 @@ export const logoutUser = () => {
 };
 
 import { changeLoginStatus } from './isLoggedInCreators';
+import { clearCart } from './cartCreators';
 // thunks
 export const loginThunk = (email, password) => {
   return dispatch => {
@@ -39,6 +40,8 @@ export const logoutThunk = () => {
       .post('/api/users/logout')
       .then(() => {
         dispatch(logoutUser());
+        // clear cart
+        dispatch(clearCart());
       })
       .catch(e => {
         throw new Error('log out error');

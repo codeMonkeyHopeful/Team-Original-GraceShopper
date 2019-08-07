@@ -1,5 +1,9 @@
 import axios from 'axios';
-import { ADD_TO_CART, GOT_CART } from '../actionCreators/cartCreators';
+import {
+  ADD_TO_CART,
+  GOT_CART,
+  CLEAR_CART,
+} from '../actionCreators/cartCreators';
 
 const initialState = {
   cart: [],
@@ -41,6 +45,9 @@ const cartReducer = (state = initialState, action) => {
     }
     case GOT_CART: {
       return { cart: action.cart };
+    }
+    case CLEAR_CART: {
+      return { cart: [] };
     }
     default:
       return state;
