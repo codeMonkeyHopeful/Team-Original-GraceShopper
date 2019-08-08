@@ -15,8 +15,6 @@ const Orders = () => {
       .catch(e => console.error(e));
   }, []);
 
-  console.log('this is a test: ', orderItems);
-
   return (
     <div>
       <h2>Your Previous Orders</h2>
@@ -27,7 +25,7 @@ const Orders = () => {
         <th>Purchase Date</th>
         {orderItems.map(item => {
           return (
-            <tr>
+            <tr key={item.id}>
               <td>{item.productId}</td>
               <td>{item.qty}</td>
               <td>{item.price}</td>
