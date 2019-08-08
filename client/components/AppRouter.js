@@ -13,7 +13,7 @@ import AccountProfile from './Header/Navbar/AccountProfile';
 import Login from './login/Login';
 import MainProducts from './Products/MainProducts';
 import SingleProduct from './Products/SingleProduct';
-import Cart from './Cart/Cart';
+import { Cart, CheckoutPage } from './Cart';
 import SearchPage from './Products/SearchPage';
 
 import {
@@ -73,6 +73,7 @@ const AppRouter = props => {
           <Route exact path="/products/single/:id" component={SingleProduct} />
           <Route exact path="/products/:pc1" component={MainProducts} />
           <Route exact path="/products/:pc1/:pc2" component={MainProducts} />
+          <Route exact path="/checkout" component={CheckoutPage} />
           <Route
             exact
             path="/products/:pc1/:pc2/:pc3"

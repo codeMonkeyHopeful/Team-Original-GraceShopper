@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { CART_CONTAINER, CART_TABLE, CHECKOUT_BUTTON } from './styles';
 import CartTable from './CartTable';
 
@@ -11,7 +12,11 @@ const Cart = props => {
       <CartTable style={CART_TABLE} />
       &nbsp; &nbsp;
       <div style={CHECKOUT_BUTTON}>
-        {cart.length !== 0 && <button id="checkout-button">CHECKOUT</button>}
+        {cart.length !== 0 && (
+          <NavLink to="/checkout">
+            <button id="checkout-button">CHECKOUT</button>
+          </NavLink>
+        )}
       </div>
     </div>
   );
