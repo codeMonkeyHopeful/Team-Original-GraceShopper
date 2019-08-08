@@ -5,7 +5,7 @@ import DecreaseButton from './DecreaseButton';
 
 const CartTable = props => {
   const { cart } = props.cart;
-  console.log('cartTab;le', cart);
+  console.log('cartTable', cart);
   if (cart.length === 0) {
     return <h3>Nothing in your cart yet. Get shopping!</h3>;
   }
@@ -36,9 +36,10 @@ const CartTable = props => {
                 <div>{name}</div>
               </td>
               <td>
-                <IncreaseButton /> &nbsp;
+                <DecreaseButton qty={qty} product={product} />
+                &nbsp;
                 {qty} &nbsp;
-                <DecreaseButton />
+                <IncreaseButton product={product} />
               </td>
               <td>${price}</td>
             </tr>

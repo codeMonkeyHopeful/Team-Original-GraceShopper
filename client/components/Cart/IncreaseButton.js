@@ -1,12 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { UPDATE_BUTTONS } from './styles';
+import { increaseQty } from './../../redux';
 
 const IncreaseButton = props => {
-  const { cart } = props.cart;
-  return <button style={UPDATE_BUTTONS}>+</button>;
+  const { product, increaseQty } = props;
+  return (
+    <button
+      data-pid={product.id}
+      style={UPDATE_BUTTONS}
+      onClick={() => {
+        console.log('qty increased');
+        increaseQty(product);
+      }}
+    >
+      +
+    </button>
+  );
 };
 
-const mapState = ({ cart }) => ({ cart });
+const mapDispatch = dispatch => ({
+  increaseQty: product => {
+    dispatch(increaseQty(product));
+  },
+});
 
-export default connect(mapState)(IncreaseButton);
+export default connect(
+  null,
+  mapDispatch
+)(IncreaseButton);

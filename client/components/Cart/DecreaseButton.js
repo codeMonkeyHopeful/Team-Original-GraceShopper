@@ -1,12 +1,32 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { UPDATE_BUTTONS } from './styles';
+import { decreaseQty } from './../../redux';
 
 const DecreaseButton = props => {
-  const { cart } = props.cart;
-  return <button style={UPDATE_BUTTONS}>-</button>;
+  const { product, decreaseQty, qty } = props;
+  return (
+    <button
+      style={UPDATE_BUTTONS}
+      onClick={() => {
+        if (qty === 1) {
+          return;
+        }
+        console.log('decreased qty');
+        decreaseQty(product);
+      }}
+    >
+      -
+    </button>
+  );
 };
 
-const mapState = ({ cart }) => ({ cart });
-
-export default connect(mapState)(DecreaseButton);
+const mapDispatch = dispatch => ({
+  decreaseQty: product => {
+    dispatch(decreaseQty(product));
+  },
+});
+export default connect(
+  null,
+  mapDispatch
+)(DecreaseButton);
