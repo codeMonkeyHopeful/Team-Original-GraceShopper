@@ -49,23 +49,22 @@ router.get('/:id', (req, res, next) => {
 // POST to api/carts
 // Access: public
 router.post('/', (req, res, next) => {
-  const { body } = req;
-  // console.log('body', body);
-  const whereObj = { purchased: false };
-  let userId = null;
-  if (req.session.user) {
-    userId = req.session.user.user_id;
-    whereObj.userId = userId;
-  }
-  if (!userId) {
-    whereObj.sessionSid = req.sessionID;
-  }
-  const cart = req.body.cart;
+  const reduxCart = req.body.cart;
+
   return Promise.all(
-    cart.map(({ product, qty }) => {
+    reduxCart.map(({ product, qty }) => {
+      const whereObj = { purchased: false };
+      let userId = null;
+      if (req.session.user) {
+        userId = req.session.user.user_id;
+        whereObj.userId = userId;
+      }
+      if (!userId) {
+        whereObj.sessionSid = req.sessionID;
+      }
+
       const productId = product.id;
       whereObj.productId = productId;
-      console.log('whereObj', whereObj);
       return Cart.findOrCreate({
         where: whereObj,
         defaults: { qty, price: product.price },
@@ -74,11 +73,13 @@ router.post('/', (req, res, next) => {
   )
     .then(returnedCart => {
       return Promise.all(
-        returnedCart.map(([product, created], i) => {
-          console.log(chalk.blue('product', product.get(), 'created', created));
-          const reduxProduct = cart[i];
+        returnedCart.map((productAndCreated, i) => {
+          const product = productAndCreated[0];
+          const created = productAndCreated[1];
+
+          const reduxProduct = reduxCart[i];
+
           if (!created && product.qty !== reduxProduct.qty) {
-            console.log(chalk.green('updating product', product));
             return product.update({ qty: reduxProduct.qty });
           } else {
             return Promise.resolve();
