@@ -14,7 +14,7 @@ const initialState = {
 // Reducer helper functions
 const newCartToReducer = (cart, product, mode, qty = 1) => {
   let wasFound = false;
-  const newCart = cart.map(cartProd => {
+  let newCart = cart.map(cartProd => {
     const newProduct = Object.assign({}, cartProd);
     if (newProduct.product.id === product.id) {
       if (mode === ADD_TO_CART) {
@@ -33,7 +33,7 @@ const newCartToReducer = (cart, product, mode, qty = 1) => {
     return newProduct;
   });
   if (!wasFound && mode === ADD_TO_CART) {
-    newCart.push({ product, qty });
+    newCart = newCart.concat([{ product, qty }]);
   }
   return { cart: newCart };
 };
@@ -42,7 +42,7 @@ const updateCartToDb = cart => {
   return axios
     .post('/api/carts', cart)
     .then(() => {
-      console.log('DB updated cart');
+      console.log('DB updated cart', cart);
     })
     .catch(() => console.log('Error updating cart to db!'));
 };

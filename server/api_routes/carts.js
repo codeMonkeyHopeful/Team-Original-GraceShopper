@@ -1,12 +1,14 @@
 const router = require('express').Router();
 const { Cart, Product } = require('../database/index.js');
+const chalk = require('chalk');
 
 // GET to api/carts/
 // Access: private, admin only
 router.get('/', (req, res, next) => {
   let userId = null;
   let sessionId = req.session.id;
-  sessionId = sessionId.replace(/-/g, '');
+  console.log('/api/cart get route session id', sessionId);
+  // sessionId = sessionId.replace(/-/g, '');
   const queryObj = { where: {}, include: [Product] };
 
   // check for user
@@ -48,7 +50,7 @@ router.get('/:id', (req, res, next) => {
 // Access: public
 router.post('/', (req, res, next) => {
   const { body } = req;
-  console.log('body', body);
+  // console.log('body', body);
   const whereObj = { purchased: false };
   let userId = null;
   if (req.session.user) {
@@ -56,14 +58,14 @@ router.post('/', (req, res, next) => {
     whereObj.userId = userId;
   }
   if (!userId) {
-    sessionId = req.sessionID.replace(/-/g, '');
-    whereObj.sessionSid = sessionId;
+    whereObj.sessionSid = req.sessionID;
   }
   const cart = req.body.cart;
   return Promise.all(
     cart.map(({ product, qty }) => {
       const productId = product.id;
       whereObj.productId = productId;
+      console.log('whereObj', whereObj);
       return Cart.findOrCreate({
         where: whereObj,
         defaults: { qty, price: product.price },
@@ -73,8 +75,10 @@ router.post('/', (req, res, next) => {
     .then(returnedCart => {
       return Promise.all(
         returnedCart.map(([product, created], i) => {
+          console.log(chalk.blue('product', product.get(), 'created', created));
           const reduxProduct = cart[i];
           if (!created && product.qty !== reduxProduct.qty) {
+            console.log(chalk.green('updating product', product));
             return product.update({ qty: reduxProduct.qty });
           } else {
             return Promise.resolve();
