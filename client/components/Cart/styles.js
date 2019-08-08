@@ -22,3 +22,7 @@ export const CHECKOUT_BUTTON = {
   flexDirection: 'row-reverse',
   margin: 'none',
 };
+
+export const UPDATE_BUTTONS = {
+  borderRadius: '50%',
+};

@@ -4,6 +4,8 @@ import axios from 'axios';
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const GOT_CART = 'GOT_CART';
 export const CLEAR_CART = 'CLEAR_CART';
+export const INCREASE_CART_QTY = 'INCREASE_CART_QTY';
+export const DECREASE_CART_QTY = 'DECREASE_CART_QTY';
 
 // action creators
 export const addToCart = (product, qty) => {
@@ -23,6 +25,14 @@ export const gotCart = cart => {
 
 export const clearCart = () => {
   return { type: CLEAR_CART };
+};
+
+export const increaseQty = product => {
+  return { type: INCREASE_CART_QTY, product };
+};
+
+export const decreaseQty = product => {
+  return { type: DECREASE_CART_QTY, product };
 };
 
 // thunks
