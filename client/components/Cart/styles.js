@@ -1,7 +1,7 @@
 export const CART_CONTAINER = {
   disply: 'flex',
   justifyContent: 'center',
-  margin: '0 150px 0 150px',
+  margin: '20px 150px 0 150px',
   fontFamily:
     'Human BBY Web,Arial,Helvetica,Nimbus Sans L,Liberation Sans,FreeSans,sans-serif',
 };
