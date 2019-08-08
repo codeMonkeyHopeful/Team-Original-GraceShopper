@@ -21,12 +21,6 @@ const Navbar = () => {
         <NavLink to='/products' style={PRODUCT_MODAL}>
           <button>Products</button>
         </NavLink>
-<<<<<<< HEAD
-=======
-        {/* <NavLink to="/brands" style={PRODUCT_MODAL}>
-          <button>Brands</button>
-        </NavLink> */}
->>>>>>> remove brand button, seeding fake purchase
       </div>
       <div id='nav-account-links-container' style={NAV_ACCOUNT_LINKS_CONTAINER}>
         {/* login status should come from redux */}
