@@ -21,7 +21,6 @@ router.post('/login', (req, res, next) => {
   if (!email || !password) {
     return res.status(401).json({ error: 'Invalid login credentials' });
   }
-  // returns user and
   User.authenticate(email, password)
     .then(user => {
       req.session.user = {
@@ -69,6 +68,42 @@ router.get('/checklogin', (req, res, next) => {
     res.sendStatus(204);
   }
 });
+
+// POST to api/users/signup
+// Access: public
+router.post('/signup', (req, res, next) => {
+  const errorsResponse = {};
+  const { email, password1, password2 } = req.body;
+  if (password1 !== password2) {
+    errorsResponse.password = 'passwords do not match';
+    return res.status(400).send({ errorsResponse });
+  }
+  User.findOrCreate({ where: { email }, defaults: { password: password1 } })
+    .then(userAndCreated => {
+      const user = userAndCreated[0];
+      const wasCreated = userAndCreated[1];
+      if (!wasCreated) {
+        errorsResponse.email = 'email already taken';
+        return res.status(400).send({ errorsResponse });
+      } else {
+        return res.status(200).send({ message: 'success' });
+      }
+    })
+    .catch(e => {
+      const errorsFromSequelize = e.errors;
+      if (errorsFromSequelize.some(error => error.path === 'email')) {
+        errorsResponse.email = 'invalid email';
+      }
+      if (errorsFromSequelize.some(error => error.path === 'password')) {
+        errorsResponse.password = 'password can not be empty';
+      }
+      if (Object.keys(errorsResponse).length) {
+        return res.status(400).send({ errorsResponse });
+      }
+      next(e);
+    });
+});
+
 // GET to api/users/:id
 // Access: private, admin only
 router.get('/:id', (req, res, next) => {
