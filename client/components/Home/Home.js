@@ -8,8 +8,14 @@ const Home = props => {
   return (
     <div>
       <center>
+        <img
+          src='/images/Main/fry.jpg'
+          alt='company logo'
+          height='360'
+          width='360'
+        />
         <h1>
-          <u>We sell this stuff</u>
+          <u>Check Out Some Of Our Products</u>
         </h1>
         {categories.map(category => {
           return (
