@@ -58,3 +58,5 @@ export const NAV_IMAGE = {
 export const BUTTON_CLASSES_PRIMARY = 'btn btn-primary';
 
 export const BUTTON_CLASSES_SUCCESS = 'btn btn-success';
+
+export const BUTTON_CLASSES_DANGER = 'btn btn-danger';

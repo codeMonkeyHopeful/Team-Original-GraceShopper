@@ -11,6 +11,7 @@ import {
   PRODUCT_MODAL,
   NAV_ACCOUNT_LINKS_CONTAINER,
   BUTTON_CLASSES_PRIMARY,
+  BUTTON_CLASSES_DANGER,
 } from '../styles';
 
 const Navbar = props => {
@@ -26,7 +27,15 @@ const Navbar = props => {
           <button className={BUTTON_CLASSES_PRIMARY}>Products</button>
         </NavLink>
       </div>
+
       <div id="nav-account-links-container" style={NAV_ACCOUNT_LINKS_CONTAINER}>
+        {isAdmin ? (
+          <NavLink to="/admin" style={NAV_LINK}>
+            <button className={BUTTON_CLASSES_DANGER}>Admin Page</button>
+          </NavLink>
+        ) : (
+          ''
+        )}
         <LoginLink />
         {navbarLinks.map(link => {
           if (link === 'cart') {
