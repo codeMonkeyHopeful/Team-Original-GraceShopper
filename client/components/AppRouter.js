@@ -15,6 +15,7 @@ import MainProducts from './Products/MainProducts';
 import SingleProduct from './Products/SingleProduct';
 import { Cart, CheckoutPage } from './Cart';
 import SearchPage from './Products/SearchPage';
+import Orders from './Orders/Orders';
 
 import {
   changeLoginStatus,
@@ -60,26 +61,26 @@ const AppRouter = props => {
     );
   };
   return (
-    <div id="main-container">
+    <div id='main-container'>
       <Router>
         <Header />
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/account" component={AccountProfile} />
-          <Route exact path="/cart" component={Cart} />
-          <Route exact path="/login" component={Login} />
-          <Route path="/products/search" component={SearchPage} />
-          <Route exact path="/products" component={MainProducts} />
-          <Route exact path="/products/single/:id" component={SingleProduct} />
-          <Route exact path="/products/:pc1" component={MainProducts} />
-          <Route exact path="/products/:pc1/:pc2" component={MainProducts} />
-          <Route exact path="/checkout" component={CheckoutPage} />
+          <Route exact path='/' component={Home} />
+          <Route exact path='/account' component={AccountProfile} />
+          <Route exact path='/cart' component={Cart} />
+          <Route exact path='/login' component={Login} />
+          <Route path='/products/search' component={SearchPage} />
+          <Route exact path='/products' component={MainProducts} />
+          <Route exact path='/products/single/:id' component={SingleProduct} />
+          <Route exact path='/products/:pc1' component={MainProducts} />
+          <Route exact path='/products/:pc1/:pc2' component={MainProducts} />
           <Route
             exact
-            path="/products/:pc1/:pc2/:pc3"
+            path='/products/:pc1/:pc2/:pc3'
             component={MainProducts}
           />
-          <Redirect to="/" />
+          <Route exact path='/orders' component={Orders} />
+          <Redirect to='/' />
         </Switch>
       </Router>
     </div>

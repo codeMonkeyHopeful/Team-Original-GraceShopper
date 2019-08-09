@@ -108,7 +108,8 @@ const products = [
     description:
       'This board does not include a PLA or SID chip and will require them for use. When a working PLA and SID are installed, the board was fully tested on the Commodore factory test harness which ensures all I/O ports and functions work 100% and it passed with flying colors. The board is missing the original backing shield. The side bracket on the right side near the joystick ports is included however. This board is an NTSC 250407 revision from 1983 or so.',
     price: 54.99,
-    image_url: '/images/products/Commodore64.jpg',
+    image_url:
+      'https://www.picclickimg.com/00/s/OTQ5WDE2MDA=/z/OAkAAOSwJrpcusuF/$/Commodore-64-C64-Motherboard-ASSY-No-250469-without-_1.jpg',
     brandId: 1, //update
     productCategoryId: 1,
   },

@@ -17,6 +17,7 @@ const productCreator = require('./creators/productCreator');
 const productcategory = require('./data/productcategory');
 const generateProfile = require('./data/testProfile');
 const brands = require('./data/brands');
+const orders = require('./data/orders');
 
 const seed = async () => {
   try {
@@ -45,6 +46,14 @@ const seed = async () => {
         return productCreator(products);
       })
     );
+
+    console.log('seeding orders');
+    await Promise.all(
+      orders.map(order => {
+        return Cart.create(order);
+      })
+    );
+
     console.log('seeding profiles');
     const users = await User.findAll();
     for (let i = 0; i < users.length; i++) {
