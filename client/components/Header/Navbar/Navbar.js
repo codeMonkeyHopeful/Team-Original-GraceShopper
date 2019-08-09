@@ -10,6 +10,7 @@ import {
   NAV_LINK,
   PRODUCT_MODAL,
   NAV_ACCOUNT_LINKS_CONTAINER,
+  BUTTON_CLASSES_PRIMARY,
 } from '../styles';
 
 const Navbar = props => {
@@ -22,7 +23,7 @@ const Navbar = props => {
       <div id="nav-products-container">
         {/* modals */}
         <NavLink to="/products" style={PRODUCT_MODAL}>
-          <button>Products</button>
+          <button className={BUTTON_CLASSES_PRIMARY}>Products</button>
         </NavLink>
       </div>
       <div id="nav-account-links-container" style={NAV_ACCOUNT_LINKS_CONTAINER}>
@@ -31,7 +32,7 @@ const Navbar = props => {
           if (button === 'cart') {
             return (
               <NavLink key={button} to={`/${button}`} style={NAV_LINK}>
-                <button>
+                <button className={BUTTON_CLASSES_PRIMARY}>
                   {cartImage} {button[0].toUpperCase()}
                   {button.slice(1)}
                   {/* Need to add number items in cart */}
@@ -44,7 +45,7 @@ const Navbar = props => {
           }
           return (
             <NavLink key={button} to={`/${button}`} style={NAV_LINK}>
-              <button>
+              <button className={BUTTON_CLASSES_PRIMARY}>
                 {button[0].toUpperCase()}
                 {button.slice(1)}
               </button>

@@ -23,7 +23,7 @@ body {
 .product-card-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   border: 3px black solid;
   border-radius: 5%;
   margin: 1vw;
@@ -41,7 +41,7 @@ body {
 }
 
 .product-card-container > div {
-  padding: 2vh 0 2vh 0;
+  margin: 2vh 0 2vh 0;
 }
 
 .product-card-title {

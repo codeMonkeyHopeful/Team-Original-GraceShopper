@@ -54,3 +54,7 @@ export const COMPANY_NAME = {
 export const NAV_IMAGE = {
   width: '12px',
 };
+
+export const BUTTON_CLASSES_PRIMARY = 'btn btn-primary';
+
+export const BUTTON_CLASSES_SUCCESS = 'btn btn-success';
