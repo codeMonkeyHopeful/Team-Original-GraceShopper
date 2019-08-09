@@ -36,14 +36,19 @@ export const decreaseQty = product => {
 };
 
 // thunks
-export const getCartThunk = () => {
+export const getCartThunk = beforeLoginCart => {
   return dispatch => {
     return axios
       .get('/api/carts')
       .then(res => res.data)
       .then(cart => {
-        console.log('cart from db', cart);
         dispatch(gotCart(cart));
+
+        if (beforeLoginCart.cart.length) {
+          beforeLoginCart.cart.forEach(({ product, qty }) => {
+            dispatch(addToCart(product, qty));
+          });
+        }
       });
   };
 };

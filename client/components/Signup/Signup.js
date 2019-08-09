@@ -37,8 +37,7 @@ const Signup = props => {
     city: 'city',
     state: 'WA',
     zipcode: '89723',
-
-    errors: {},
+    errors: { email: '', password: '', first_name: '', last_name: '' },
   };
   const [values, setValues, handleChange, handleSubmit] = useForm(onSubmit, {
     email: '',
