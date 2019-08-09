@@ -17,6 +17,7 @@ import SingleProduct from './Products/SingleProduct';
 import { Cart, CheckoutPage } from './Cart';
 import SearchPage from './Products/SearchPage';
 import Orders from './Orders/Orders';
+import Home from './Home/Home';
 
 import {
   changeLoginStatus,
@@ -54,13 +55,13 @@ const AppRouter = props => {
   props.getCartThunk();
   // remove Test component
 
-  const Home = () => {
-    return (
-      <div>
-        <p>Home sweet home</p>
-      </div>
-    );
-  };
+  // const Home = () => {
+  //   return (
+  //     <div>
+  //       <p>Home sweet home</p>
+  //     </div>
+  //   );
+  // };
   return (
     <div id="main-container">
       <Router>
