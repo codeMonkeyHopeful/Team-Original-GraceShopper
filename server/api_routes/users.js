@@ -2,6 +2,8 @@ const router = require('express').Router();
 const { User, Profile, Session } = require('../database/index.js');
 const chalk = require('chalk');
 
+const { signupValidator } = require('./utils/userValidation');
+
 // GET to api/users/
 // Access: private, admin only
 router.get('/', (req, res, next) => {
@@ -37,6 +39,7 @@ router.post('/login', (req, res, next) => {
           user_id: user.user_id,
         });
       });
+      return Promise.resolve();
     })
     .catch(next);
 });
@@ -72,12 +75,11 @@ router.get('/checklogin', (req, res, next) => {
 // POST to api/users/signup
 // Access: public
 router.post('/signup', (req, res, next) => {
-  const errorsResponse = {};
-  const { email, password1, password2 } = req.body;
-  if (password1 !== password2) {
-    errorsResponse.password = 'passwords do not match';
+  const [errorsResponse, isValid] = signupValidator(req.body);
+  if (!isValid) {
     return res.status(400).send({ errorsResponse });
   }
+  const { email, password1 } = req.body;
   User.findOrCreate({ where: { email }, defaults: { password: password1 } })
     .then(userAndCreated => {
       const user = userAndCreated[0];
@@ -86,10 +88,17 @@ router.post('/signup', (req, res, next) => {
         errorsResponse.email = 'email already taken';
         return res.status(400).send({ errorsResponse });
       } else {
-        return res.status(200).send({ message: 'success' });
+        return Promise.all([user, Profile.create(req.body)]);
       }
     })
+    .then(([user, profile]) => {
+      return profile.update({ userId: user.id });
+    })
+    .then(() => {
+      return res.status(200).send({ message: 'successfully created new user' });
+    })
     .catch(e => {
+      next(e);
       const errorsFromSequelize = e.errors;
       if (errorsFromSequelize.some(error => error.path === 'email')) {
         errorsResponse.email = 'invalid email';
