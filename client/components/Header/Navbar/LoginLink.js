@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { changeLoginStatus, logoutThunk } from './../../../redux';
 
-import { NAV_LINK } from './../styles';
+import { NAV_LINK, BUTTON_CLASSES_SUCCESS } from './../styles';
 
 const handleLoginClick = (isLoggedIn, changeStatus, logOut) => {
   if (isLoggedIn) {
@@ -25,7 +25,7 @@ const renderLogin = (isLoggedIn, changeStatus, logOut) => {
       style={NAV_LINK}
       onClick={() => handleLoginClick(isLoggedIn, changeStatus, logOut)}
     >
-      <button>{loginStatus}</button>
+      <button className={BUTTON_CLASSES_SUCCESS}>{loginStatus}</button>
     </NavLink>
   );
 };

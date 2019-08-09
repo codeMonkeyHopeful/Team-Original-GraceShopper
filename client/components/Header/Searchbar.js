@@ -27,7 +27,7 @@ const Searchbar = props => {
   );
   return (
     <div id="search-bar" style={SEARCH_BAR}>
-      <form action="submit">
+      <form action="submit" className="form-group">
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <input
             type="text"
@@ -36,8 +36,13 @@ const Searchbar = props => {
             value={values.search}
             onChange={handleChange}
             style={SEARCH_INPUT}
+            className="form-control"
           />
-          <button type="submit" onClick={handleSubmit}>
+          <button
+            type="submit"
+            onClick={handleSubmit}
+            className="btn btn-primary"
+          >
             {' '}
             Search
           </button>
