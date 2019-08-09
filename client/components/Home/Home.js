@@ -9,17 +9,17 @@ const Home = props => {
     <div>
       <center>
         <img
-          src='/images/Main/fry.jpg'
-          alt='company logo'
-          height='360'
-          width='360'
+          src="/images/Main/fry.jpg"
+          alt="company logo"
+          height="360"
+          width="360"
         />
         <h1>
           <u>Check Out Some Of Our Products</u>
         </h1>
         {categories.map(category => {
           return (
-            <div key={category.pcid}>
+            <div key={category.pcid1}>
               <Link to={`/products/${category.pcid1}`}>{category.name1}</Link>
             </div>
           );

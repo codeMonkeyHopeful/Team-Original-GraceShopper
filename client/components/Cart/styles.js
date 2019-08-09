@@ -26,3 +26,5 @@ export const CHECKOUT_BUTTON = {
 export const UPDATE_BUTTONS = {
   borderRadius: '50%',
 };
+
+export const BUTTON_CLASSES_PRIMARY = 'btn btn-primary';

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { ACCOUNT_PROFILE } from '../styles';
+import { CART_CONTAINER } from '../../Cart/styles';
 
 const AccountProfile = props => {
   const { isLoggedIn } = props;
@@ -10,7 +11,7 @@ const AccountProfile = props => {
     return <h2>Please log in first.</h2>;
   } else {
     return (
-      <div id="nav-link-account" style={ACCOUNT_PROFILE}>
+      <div id="nav-link-account" style={CART_CONTAINER}>
         <div id="profile-image">
           <img src={profile.profile_pic_url} width="200px" />
         </div>
