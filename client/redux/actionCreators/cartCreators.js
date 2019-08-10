@@ -53,7 +53,7 @@ export const getCartThunk = beforeLoginCart => {
         );
         dispatch(gotCart(notPurchasedOrdersCart));
         console.log('beforelogincart', beforeLoginCart);
-        if (beforeLoginCart.cart.length) {
+        if (beforeLoginCart && beforeLoginCart.cart.length) {
           beforeLoginCart.cart.forEach(({ product, qty }) => {
             dispatch(addToCart(product, qty));
           });

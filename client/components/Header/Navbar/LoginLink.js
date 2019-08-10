@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { changeLoginStatus, logoutThunk } from './../../../redux';
@@ -11,6 +11,7 @@ const handleLoginClick = (isLoggedIn, changeStatus, logOut) => {
     console.log('run logout routine');
     changeStatus(false);
     logOut();
+    window.location.replace('/'); //Logging out reloads to home page
   }
 };
 

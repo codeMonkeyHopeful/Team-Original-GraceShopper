@@ -57,7 +57,11 @@ router.post('/', (req, res, next) => {
     return Promise.all(
       reduxCart.map(({ product, qty }) => {
         const whereObj = { purchased: false };
-        whereObj.userId = req.session.user.user_id;
+        if (req.session.user) {
+          whereObj.userId = req.session.user.user_id;
+        } else {
+          whereObj.sessionSid = req.sessionID;
+        }
 
         return Cart.findAll({ where: whereObj });
       })

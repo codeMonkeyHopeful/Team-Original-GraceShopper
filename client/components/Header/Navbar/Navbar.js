@@ -29,6 +29,7 @@ const Navbar = props => {
       </div>
 
       <div id="nav-account-links-container" style={NAV_ACCOUNT_LINKS_CONTAINER}>
+        <LoginLink />
         {isAdmin ? (
           <NavLink to="/admin" style={NAV_LINK}>
             <button className={BUTTON_CLASSES_DANGER}>Admin Page</button>
@@ -36,7 +37,6 @@ const Navbar = props => {
         ) : (
           ''
         )}
-        <LoginLink />
         {navbarLinks.map(link => {
           if (link === 'cart') {
             return (
@@ -50,6 +50,9 @@ const Navbar = props => {
           }
           if (link === 'account' && !isLoggedIn) {
             link = 'signup';
+          }
+          if (link === 'orders' && !isLoggedIn) {
+            return;
           }
           return (
             <NavLink key={link} to={`/${link}`} style={NAV_LINK}>

@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 const Home = props => {
   const categories = props.products.product.topLevelCategories;
-  console.log(categories);
   return (
     <div>
       <center>
@@ -33,7 +32,4 @@ const mapState = state => ({
   products: state,
 });
 
-export default connect(
-  mapState,
-  null
-)(Home);
+export default connect(mapState)(Home);
