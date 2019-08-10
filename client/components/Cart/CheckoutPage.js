@@ -8,7 +8,8 @@ import {
 } from './styles';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { gotCart, submitOrder } from '../../redux';
+import { submitOrder } from '../../redux';
+import { withRouter } from 'react-router';
 
 const CheckoutPage = props => {
   const {
@@ -21,14 +22,14 @@ const CheckoutPage = props => {
     phone_number,
   } = props.currentUser.profile;
   const { email } = props.currentUser;
-  const { submitOrder, cart } = props;
+  const { submitOrder, cart, history } = props;
 
   const phoneNumber = `(${phone_number.slice(0, 3)}) ${phone_number.slice(
     3,
     6
   )}-${phone_number.slice(6)}`;
 
-  console.log('cart in checkout', cart);
+  console.log('cart in checkout', cart, history);
   return (
     <div style={CART_CONTAINER}>
       * Please confirm your shipping and contact information are correct *
@@ -63,7 +64,10 @@ const CheckoutPage = props => {
           <div>&nbsp;</div>
           <button
             className={BUTTON_CLASSES_PRIMARY}
-            onClick={() => submitOrder(cart)}
+            onClick={() => {
+              submitOrder(cart);
+              history.push('/confirmation');
+            }}
           >
             Submit
           </button>
@@ -81,7 +85,9 @@ const mapDispatch = dispatch => ({
   },
 });
 
-export default connect(
-  mapState,
-  mapDispatch
-)(CheckoutPage);
+export default withRouter(
+  connect(
+    mapState,
+    mapDispatch
+  )(CheckoutPage)
+);

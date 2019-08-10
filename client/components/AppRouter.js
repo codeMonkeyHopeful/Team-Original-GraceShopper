@@ -14,7 +14,7 @@ import Login from './login/Login';
 import Signup from './Signup/Signup';
 import MainProducts from './Products/MainProducts';
 import SingleProduct from './Products/SingleProduct';
-import { Cart, CheckoutPage } from './Cart';
+import { Cart, CheckoutPage, ConfirmationPage } from './Cart';
 import SearchPage from './Products/SearchPage';
 import Orders from './Orders/Orders';
 import Home from './Home/Home';
@@ -72,6 +72,7 @@ const AppRouter = props => {
           <Route exact path="/products/:pc1" component={MainProducts} />
           <Route exact path="/products/:pc1/:pc2" component={MainProducts} />
           <Route exact path="/checkout" component={CheckoutPage} />
+          <Route exact path="/confirmation" component={ConfirmationPage} />
           <Route
             exact
             path="/products/:pc1/:pc2/:pc3"
