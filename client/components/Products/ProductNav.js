@@ -9,7 +9,13 @@ const ProductNav = props => {
     const categoriesArr = [pc1, pc2, pc3];
     // add root level link before all the other links
     const categoryChain = [
-      <NavLink key="cat_0" exact to="/products" activeStyle={ACTIVE_CAT_LINK}>
+      <NavLink
+        className="text-white"
+        key="cat_0"
+        exact
+        to="/products"
+        activeStyle={ACTIVE_CAT_LINK}
+      >
         All Products
       </NavLink>,
     ];
@@ -42,6 +48,7 @@ const ProductNav = props => {
       currentPath += `/${currentCatId}`;
       categoryChain.push(
         <NavLink
+          className="text-white"
           key={`cat_${i + 1}`}
           exact
           to={currentPath}
@@ -55,7 +62,11 @@ const ProductNav = props => {
     return categoryChain;
   };
 
-  return <div style={PRODUCT_NAV_CONTAINER}>{renderCategoryChain()}</div>;
+  return (
+    <div style={{ lineHeight: '2.5' }} className="nav bg-dark text-white">
+      {renderCategoryChain()}
+    </div>
+  );
 };
 
 export default ProductNav;

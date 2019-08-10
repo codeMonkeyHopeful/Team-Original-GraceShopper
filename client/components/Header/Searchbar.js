@@ -38,6 +38,7 @@ const Searchbar = props => {
             style={SEARCH_INPUT}
             className="form-control"
           />
+          &nbsp; &nbsp;
           <button
             type="submit"
             onClick={handleSubmit}

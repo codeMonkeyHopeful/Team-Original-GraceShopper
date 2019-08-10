@@ -79,35 +79,6 @@ const Login = props => {
         </div>
       </form>
     </div>
-    // <div style={{ textAlign: 'center' }}>
-    //   <form onSubmit={handleSubmit} className="form-inline">
-    //     <div className="form-group">
-    //       <label htmlFor="email">E-mail:</label>
-    //       <input
-    //         type="text"
-    //         name="email"
-    //         value={values.email}
-    //         onChange={handleChange}
-    //         className="form-control"
-    //       />
-    //     </div>
-    //     <div className="form-group">
-    //       <label htmlFor="password">Password</label>
-    //       <input
-    //         type="password"
-    //         name="password"
-    //         value={values.password}
-    //         onChange={handleChange}
-    //         className="form-control"
-    //       />
-    //       {error ? renderError(error) : ''}
-    //     </div>
-
-    //     <button type="submit" disabled={!values.password || !values.email}>
-    //       Login
-    //     </button>
-    //   </form>
-    // </div>
   );
 };
 
