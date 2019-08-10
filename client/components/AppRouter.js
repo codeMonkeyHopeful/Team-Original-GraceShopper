@@ -18,6 +18,8 @@ import { Cart, CheckoutPage } from './Cart';
 import SearchPage from './Products/SearchPage';
 import Orders from './Orders/Orders';
 import Home from './Home/Home';
+import Admin from './Admin/Admin';
+import Error from './Error/Error';
 
 import {
   changeLoginStatus,
@@ -53,15 +55,7 @@ const AppRouter = props => {
   props.getAllCategories();
 
   props.getCartThunk();
-  // remove Test component
 
-  // const Home = () => {
-  //   return (
-  //     <div>
-  //       <p>Home sweet home</p>
-  //     </div>
-  //   );
-  // };
   return (
     <div id="main-container">
       <Router>
@@ -84,7 +78,9 @@ const AppRouter = props => {
             component={MainProducts}
           />
           <Route exact path="/orders" component={Orders} />
-          <Redirect to="/" />
+          <Route path="/admin" component={Admin} />
+          <Route path="/error" component={Error} />
+          <Redirect to="/error" />
         </Switch>
       </Router>
     </div>
