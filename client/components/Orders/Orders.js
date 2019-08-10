@@ -5,13 +5,11 @@ import { connect } from 'react-redux';
 const Orders = props => {
   const [orderItems, setOrderItems] = useState([]);
   const { allProducts } = props.product;
-  console.log(allProducts);
 
   useEffect(() => {
     axios
       .get('/api/orders')
       .then(result => {
-        console.log('axios');
         setOrderItems(() => [...result.data]);
       })
       .catch(e => console.error(e));

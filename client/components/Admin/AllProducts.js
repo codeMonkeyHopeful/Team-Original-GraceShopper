@@ -5,7 +5,7 @@ const AllProducts = props => {
   return (
     <div>
       {products.map(product => (
-        <div>{product.name}</div>
+        <div key={product.id}>{product.name}</div>
       ))}
     </div>
   );

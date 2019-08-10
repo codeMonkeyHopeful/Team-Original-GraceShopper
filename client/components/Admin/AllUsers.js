@@ -4,7 +4,7 @@ const AllUsers = props => {
   return (
     <div>
       {users.map(user => (
-        <p>{user.email}</p>
+        <p key={user.id}>{user.email}</p>
       ))}
     </div>
   );

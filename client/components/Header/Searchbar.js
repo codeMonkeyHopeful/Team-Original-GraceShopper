@@ -47,7 +47,7 @@ const Searchbar = props => {
             Search
           </button>
         </div>
-        <hr />
+        <hr color="white" />
       </form>
     </div>
   );

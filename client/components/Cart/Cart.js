@@ -14,7 +14,7 @@ const Cart = props => {
   return (
     <div id="cart-component" style={CART_CONTAINER}>
       <h2 id="cart-title">Cart</h2>
-      <CartTable style={CART_TABLE} />
+      <CartTable />
       &nbsp; &nbsp;
       <div style={CHECKOUT_BUTTON}>
         {cart.length !== 0 && (
