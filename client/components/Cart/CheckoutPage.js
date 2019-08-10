@@ -1,8 +1,14 @@
 import React from 'react';
 import CheckoutCartTable from './CheckoutCartTable';
-import { CART_CONTAINER, CART_TABLE, CHECKOUT_BUTTON } from './styles';
+import {
+  CART_CONTAINER,
+  CART_TABLE,
+  CHECKOUT_BUTTON,
+  BUTTON_CLASSES_PRIMARY,
+} from './styles';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { gotCart, submitOrder } from '../../redux';
 
 const CheckoutPage = props => {
   const {
@@ -15,7 +21,14 @@ const CheckoutPage = props => {
     phone_number,
   } = props.currentUser.profile;
   const { email } = props.currentUser;
-  console.log('current user', props.currentUser.profile);
+  const { submitOrder, cart } = props;
+
+  const phoneNumber = `(${phone_number.slice(0, 3)}) ${phone_number.slice(
+    3,
+    6
+  )}-${phone_number.slice(6)}`;
+
+  console.log('cart in checkout', cart);
   return (
     <div style={CART_CONTAINER}>
       * Please confirm your shipping and contact information are correct *
@@ -31,29 +44,44 @@ const CheckoutPage = props => {
             {city},&nbsp;{state} &nbsp;{zipcode}
           </div>
           <h3>CONTACT INFORMATION</h3>
-          <div>{phone_number}</div>
+          <div>{phoneNumber}</div>
           <div>{email}</div>
         </div>
       </div>
       <div>
-        <h3>
+        <h4>
           Please confirm your order is correct before submitting for delivery.
-        </h3>
+        </h4>
         <div>
           <CheckoutCartTable style={CART_TABLE} />
         </div>
         <div>&nbsp;</div>
         <div id="checkout-submit-button" style={CHECKOUT_BUTTON}>
           <NavLink to="/cart">
-            <button>Edit Cart</button>
+            <button className={BUTTON_CLASSES_PRIMARY}>Edit Cart</button>
           </NavLink>
           <div>&nbsp;</div>
-          <button>Submit</button>
+          <button
+            className={BUTTON_CLASSES_PRIMARY}
+            onClick={() => submitOrder(cart)}
+          >
+            Submit
+          </button>
         </div>
       </div>
     </div>
   );
 };
-const mapState = ({ currentUser }) => ({ currentUser });
 
-export default connect(mapState)(CheckoutPage);
+const mapState = ({ currentUser, cart }) => ({ currentUser, cart });
+
+const mapDispatch = dispatch => ({
+  submitOrder: cart => {
+    dispatch(submitOrder(cart));
+  },
+});
+
+export default connect(
+  mapState,
+  mapDispatch
+)(CheckoutPage);

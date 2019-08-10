@@ -5,6 +5,7 @@ import {
   CLEAR_CART,
   INCREASE_CART_QTY,
   DECREASE_CART_QTY,
+  SUBMIT_ORDER,
 } from '../actionCreators/cartCreators';
 
 const initialState = {
@@ -91,6 +92,15 @@ const cartReducer = (state = initialState, action) => {
       updateCartToDb(updatedCart);
 
       return updatedCart;
+    }
+    case SUBMIT_ORDER: {
+      const { cart } = action.cart;
+      const emptyCart = { cart: [] };
+      // Send cart with submitOrder flag to find and update.
+      updateCartToDb({ cart, submitOrder: true });
+
+      // Return empty cart to state; order placed and processed
+      return emptyCart;
     }
     default:
       return state;

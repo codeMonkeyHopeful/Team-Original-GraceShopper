@@ -20,3 +20,5 @@ export const ACTIVE_CAT_LINK = {
   pointerEvents: 'none',
   textDecoration: 'none',
 };
+
+export const BUTTON_CLASSES_PRIMARY = 'btn btn-primary';

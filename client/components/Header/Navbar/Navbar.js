@@ -14,9 +14,9 @@ import {
 } from '../styles';
 
 const Navbar = props => {
-  const navbarButtons = ['account', 'orders', 'cart'];
+  const navbarLinks = ['account', 'orders', 'cart'];
 
-  const { isAdmin, isLoggedIn } = props;
+  const { isAdmin, isLoggedIn, cart } = props;
 
   return (
     <div id="nav-links-container" style={NAV_LINKS_CONTAINER}>
@@ -28,26 +28,25 @@ const Navbar = props => {
       </div>
       <div id="nav-account-links-container" style={NAV_ACCOUNT_LINKS_CONTAINER}>
         <LoginLink />
-        {navbarButtons.map(button => {
-          if (button === 'cart') {
+        {navbarLinks.map(link => {
+          if (link === 'cart') {
             return (
-              <NavLink key={button} to={`/${button}`} style={NAV_LINK}>
+              <NavLink key={link} to={`/${link}`} style={NAV_LINK}>
                 <button className={BUTTON_CLASSES_PRIMARY}>
-                  {cartImage} {button[0].toUpperCase()}
-                  {button.slice(1)}
-                  {/* Need to add number items in cart */}
+                  {cartImage} {link[0].toUpperCase()}
+                  {link.slice(1)}({cart.cart.length})
                 </button>
               </NavLink>
             );
           }
-          if (button === 'account' && !isLoggedIn) {
-            button = 'signup';
+          if (link === 'account' && !isLoggedIn) {
+            link = 'signup';
           }
           return (
-            <NavLink key={button} to={`/${button}`} style={NAV_LINK}>
+            <NavLink key={link} to={`/${link}`} style={NAV_LINK}>
               <button className={BUTTON_CLASSES_PRIMARY}>
-                {button[0].toUpperCase()}
-                {button.slice(1)}
+                {link[0].toUpperCase()}
+                {link.slice(1)}
               </button>
             </NavLink>
           );
@@ -57,8 +56,9 @@ const Navbar = props => {
   );
 };
 
-const mapState = ({ isLoggedIn, currentUser: { isAdmin } }) => ({
+const mapState = ({ cart, isLoggedIn, currentUser: { isAdmin } }) => ({
   isLoggedIn,
   isAdmin,
+  cart,
 });
 export default connect(mapState)(Navbar);
