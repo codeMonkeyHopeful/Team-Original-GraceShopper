@@ -9,7 +9,7 @@ import {
 import axios from 'axios';
 
 import Header from './Header/Header';
-import AccountProfile from './Header/Navbar/AccountProfile';
+import AccountProfile from './Header/Navbar/accountTab/AccountProfile';
 import Login from './login/Login';
 import Signup from './Signup/Signup';
 import MainProducts from './Products/MainProducts';

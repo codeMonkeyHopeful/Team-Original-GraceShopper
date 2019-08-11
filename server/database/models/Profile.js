@@ -1,7 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
 const states = require('../utils/states_abbrevs');
-const faker = require('faker');
 
 const Profile = db.define(
   'profile',
@@ -22,7 +21,8 @@ const Profile = db.define(
     },
     profile_pic_url: {
       type: Sequelize.TEXT,
-      defaultValue: faker.image.people(),
+      defaultValue:
+        'https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png',
       validate: {
         isURL: true,
       },
