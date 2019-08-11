@@ -31,14 +31,13 @@ router.get('/', (req, res, next) => {
 // GET to api/carts/:id
 // Access: private, admin only
 router.get('/:id', (req, res, next) => {
-  const { user_id } = req.session.user;
-
+  const { id } = req.params;
   if (req.session && req.session.isAdmin) {
-    console.log('get route cart', user_id);
-    return Cart.findAll({ where: { userId: user_id }, include: [Product] })
+    console.log('get route cart');
+    return Cart.findOne({ where: { id } })
       .then(cart => {
         console.log(cart);
-        res.json(cart);
+        return res.json(cart);
       })
       .catch(next);
   } else {
@@ -57,7 +56,11 @@ router.post('/', (req, res, next) => {
     return Promise.all(
       reduxCart.map(({ product, qty }) => {
         const whereObj = { purchased: false };
-        whereObj.userId = req.session.user.user_id;
+        if (req.session.user) {
+          whereObj.userId = req.session.user.user_id;
+        } else {
+          whereObj.sessionSid = req.sessionID;
+        }
 
         return Cart.findAll({ where: whereObj });
       })
@@ -142,12 +145,13 @@ router.put('/:id', (req, res, next) => {
 
 // DELETE to api/carts/:id
 // Access: public
-router.delete('/:id', (req, res, next) => {
-  const { id } = req.params;
-
-  return Cart.destroy({ where: { id } })
+router.delete('/', (req, res, next) => {
+  console.log('user', req.session.user, req.body);
+  const { user_id } = req.session.user;
+  return Cart.destroy({ where: { userId: user_id } })
     .then(() => {
-      res.status(200).json({
+      console.log('destroyed');
+      return res.status(200).json({
         message: 'Cart has been successfully deleted!',
       });
     })

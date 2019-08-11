@@ -7,6 +7,7 @@ export const CLEAR_CART = 'CLEAR_CART';
 export const INCREASE_CART_QTY = 'INCREASE_CART_QTY';
 export const DECREASE_CART_QTY = 'DECREASE_CART_QTY';
 export const SUBMIT_ORDER = 'SUBMIT_ORDER';
+export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 
 // action creators
 export const addToCart = (product, qty) => {
@@ -40,6 +41,10 @@ export const submitOrder = cart => {
   return { type: SUBMIT_ORDER, cart };
 };
 
+export const removeFromCart = product => {
+  return { type: REMOVE_FROM_CART, product };
+};
+
 // thunks
 export const getCartThunk = beforeLoginCart => {
   return dispatch => {
@@ -53,7 +58,7 @@ export const getCartThunk = beforeLoginCart => {
         );
         dispatch(gotCart(notPurchasedOrdersCart));
         console.log('beforelogincart', beforeLoginCart);
-        if (beforeLoginCart.cart.length) {
+        if (beforeLoginCart && beforeLoginCart.cart.length) {
           beforeLoginCart.cart.forEach(({ product, qty }) => {
             dispatch(addToCart(product, qty));
           });

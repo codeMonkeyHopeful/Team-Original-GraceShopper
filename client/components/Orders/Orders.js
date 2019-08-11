@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { isTerminatorless } from '@babel/types';
+import { connect } from 'react-redux';
 
-const Orders = () => {
+const Orders = props => {
   const [orderItems, setOrderItems] = useState([]);
+  const { allProducts } = props.product;
 
   useEffect(() => {
     axios
       .get('/api/orders')
       .then(result => {
-        console.log('axios');
         setOrderItems(() => [...result.data]);
       })
       .catch(e => console.error(e));
@@ -19,23 +19,31 @@ const Orders = () => {
     <div>
       <h2>Your Previous Orders</h2>
       <table>
-        <th>Product ID</th>
-        <th>Quantity</th>
-        <th>Price</th>
-        <th>Purchase Date</th>
-        {orderItems.map(item => {
-          return (
-            <tr key={item.id}>
-              <td>{item.productId}</td>
-              <td>{item.qty}</td>
-              <td>{item.price}</td>
-              <td>{item.timeStamp}</td>
-            </tr>
-          );
-        })}
+        <tbody>
+          <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Purchase Date</th>
+          </tr>
+          {orderItems.map((orderItem, i) => {
+            const itemName = allProducts.filter(
+              product => product.id === orderItem.productId
+            )[0];
+            return (
+              <tr key={i}>
+                <td>{itemName.name}</td>
+                <td>{orderItem.qty}</td>
+                <td>{orderItem.price}</td>
+                <td>{orderItem.timeStamp}</td>
+              </tr>
+            );
+          })}
+        </tbody>
       </table>
     </div>
   );
 };
+const mapState = ({ product }) => ({ product });
 
-export default Orders;
+export default connect(mapState)(Orders);

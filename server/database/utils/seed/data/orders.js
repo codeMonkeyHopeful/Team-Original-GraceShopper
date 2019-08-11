@@ -4,6 +4,7 @@ const orders = [
     price: 599.99,
     purchased: true,
     userId: 1,
+    productId: 3,
   },
 ];
 

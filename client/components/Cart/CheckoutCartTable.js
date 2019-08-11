@@ -6,12 +6,12 @@ const CheckoutCartTable = props => {
 
   let total = 0;
   return (
-    <table id="cartegories">
-      <tbody>
+    <table className="table">
+      <tbody className="thead-dark">
         <tr>
-          <th>PRODUCTS</th>
-          <th>QUANTITY</th>
-          <th>PRICE</th>
+          <th scope="col">PRODUCTS</th>
+          <th scope="col">QUANTITY</th>
+          <th scope="col">PRICE</th>
         </tr>
         {cart.map(({ product, qty }) => {
           const { id, name, price, image_url } = product;

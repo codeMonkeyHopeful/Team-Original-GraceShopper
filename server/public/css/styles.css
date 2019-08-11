@@ -74,13 +74,13 @@ body {
   flex-direction: column;
 }
 
-th,
+/* th,
 tr,
 td {
   padding: 10px;
   border: solid 1px;
   text-align: center;
-}
+} */
 
 .fixed {
   table-layout: fixed;
