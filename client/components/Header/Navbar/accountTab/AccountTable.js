@@ -4,16 +4,14 @@ import { connect } from 'react-redux';
 const AccountTable = props => {
   const { currentUser } = props;
   const {
-    first_name,
-    last_name,
     street_address,
     city,
     state,
     zipcode,
     phone_number,
+    bio,
   } = props.currentUser.profile;
   const width = '30%';
-  const profileName = `${first_name} ${last_name}`;
   const streetAddress = `${street_address}`;
   const cityStateZip = `${city}, ${state} ${zipcode}`;
   const phoneNumber = `(${phone_number.slice(0, 3)}) ${phone_number.slice(
@@ -46,10 +44,7 @@ const AccountTable = props => {
           <th scope="row" width={width}>
             About Me
           </th>
-          <td colSpan="2">
-            Hi. My name is {profileName}. My favorite site to shop on is Bester
-            Buy because they have everything to compliment my hipster needs! ❤️
-          </td>
+          <td colSpan="2">{bio}</td>
         </tr>
       </tbody>
     </table>

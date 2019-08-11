@@ -58,6 +58,11 @@ const Profile = db.define(
         len: [10],
       },
     },
+    bio: {
+      type: Sequelize.TEXT,
+      defaultValue:
+        'My favorite site to shop on is Bester Buy because they have everything to compliment my hipster needs! ❤️',
+    },
   },
   {
     underscored: true,
