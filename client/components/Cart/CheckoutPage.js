@@ -32,10 +32,12 @@ const CheckoutPage = props => {
   console.log('cart in checkout', cart, history);
   return (
     <div style={CART_CONTAINER}>
-      * Please confirm your shipping and contact information are correct *
+      <h5 className="text-center text-danger">
+        * Please confirm your shipping and contact information are correct *
+      </h5>
       <div>&nbsp;</div>
       <div>
-        <h3>SHIPPING INFORMATION</h3>
+        <h4 className="text-info">SHIPPING INFORMATION</h4>
         <div>
           <div>
             {first_name}&nbsp;{last_name}
@@ -44,15 +46,17 @@ const CheckoutPage = props => {
           <div>
             {city},&nbsp;{state} &nbsp;{zipcode}
           </div>
-          <h3>CONTACT INFORMATION</h3>
+          <br />
+          <h4 className="text-info">CONTACT INFORMATION</h4>
           <div>{phoneNumber}</div>
           <div>{email}</div>
         </div>
       </div>
+      <br />
       <div>
-        <h4>
+        <h5 className="text-center text-danger">
           Please confirm your order is correct before submitting for delivery.
-        </h4>
+        </h5>
         <div>
           <CheckoutCartTable style={CART_TABLE} />
         </div>
@@ -63,7 +67,7 @@ const CheckoutPage = props => {
           </NavLink>
           <div>&nbsp;</div>
           <button
-            className={BUTTON_CLASSES_PRIMARY}
+            className="btn btn-primary "
             onClick={() => {
               submitOrder(cart);
               history.push('/confirmation');

@@ -37,8 +37,8 @@ const LoginLink = props => {
   return (
     <Fragment>
       {isLoggedIn ? (
-        <p style={{ margin: 0, ...NAV_LINK }}>
-          {`Welcome, ${user.profile.first_name} `}
+        <p style={{ margin: 10, ...NAV_LINK }}>
+          {`Welcome, ${user.profile.first_name} !`}
         </p>
       ) : (
         ''

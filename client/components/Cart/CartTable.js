@@ -58,8 +58,10 @@ const CartTable = props => {
             <b>TOTAL:</b>
           </td>
           <td id="total-middle" />
+          <td id="total-amount" className="text-center">
+            ${total.toFixed(2)}
+          </td>
           <td />
-          <td id="total-amount">${total.toFixed(2)}</td>
         </tr>
       </tbody>
     </table>

@@ -85,7 +85,6 @@ const MainProducts = props => {
 
   return (
     <div id="main-products-container">
-      <h2>Products </h2>
       <ProductNav allCategories={allCategories} params={params} />
       <CurrentCategories
         currentCategories={currentCategories}

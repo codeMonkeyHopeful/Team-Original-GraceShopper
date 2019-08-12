@@ -18,7 +18,7 @@ const AccountProfile = props => {
     return <h2>Please log in first.</h2>;
   } else {
     return (
-      <div className="container">
+      <div className="container mt-3">
         <h3>Profile </h3>
         <div className="d-flex justify-content-center">
           <div className="row ">
@@ -28,7 +28,11 @@ const AccountProfile = props => {
                 <h5 className="card-title">{profileName}</h5>
                 <p className="card-text" />
                 <AccountTable />
-                <a href="/account" className="btn btn-primary">
+                <a
+                  href="/account"
+                  className="btn btn-primary text-center"
+                  type="button"
+                >
                   Update Profile
                 </a>
               </div>
