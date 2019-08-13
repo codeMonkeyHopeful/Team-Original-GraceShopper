@@ -11,18 +11,13 @@ const CartTable = props => {
   }
   let total = 0;
   return (
-<<<<<<< HEAD
-    <table id='cartegories'>
-      <tbody>
-=======
-    <table className="table">
-      <tbody className="thead-dark">
->>>>>>> b8f0b024819be3cd0996e46d89452fd0214dd70d
+    <table className='table'>
+      <tbody className='thead-dark'>
         <tr>
-          <th scope="col">PRODUCTS</th>
-          <th scope="col">QUANTITY</th>
-          <th scope="col">PRICE</th>
-          <th scope="col">REMOVE</th>
+          <th scope='col'>PRODUCTS</th>
+          <th scope='col'>QUANTITY</th>
+          <th scope='col'>PRICE</th>
+          <th scope='col'>REMOVE</th>
         </tr>
       </tbody>
       <tbody>
@@ -32,7 +27,7 @@ const CartTable = props => {
           return (
             <tr key={id}>
               <th
-                scope="row"
+                scope='row'
                 style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -44,39 +39,29 @@ const CartTable = props => {
                 />
                 <div>{name}</div>
               </th>
-              <td className="text-center">
+              <td className='text-center'>
                 <DecreaseButton qty={qty} product={product} />
                 &nbsp;
                 {qty} &nbsp;
                 <IncreaseButton product={product} />
               </td>
-              <td className="text-center">${price}</td>
-              <td className="text-center">
+              <td className='text-center'>${price}</td>
+              <td className='text-center'>
                 <RemoveButton product={product} />
               </td>
             </tr>
           );
         })}
         <tr />
-<<<<<<< HEAD
-        <tr height='9px' />
-        <tr id='total-row'>
-=======
-        <tr scope="row">
->>>>>>> b8f0b024819be3cd0996e46d89452fd0214dd70d
+        <tr scope='row'>
           <td>
             <b>TOTAL:</b>
           </td>
-<<<<<<< HEAD
           <td id='total-middle' />
-          <td id='total-amount'>${total.toFixed(2)}</td>
-=======
-          <td id="total-middle" />
-          <td id="total-amount" className="text-center">
+          <td id='total-amount' className='text-center'>
             ${total.toFixed(2)}
           </td>
           <td />
->>>>>>> b8f0b024819be3cd0996e46d89452fd0214dd70d
         </tr>
       </tbody>
     </table>
