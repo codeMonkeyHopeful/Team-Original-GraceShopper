@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import {
   CART_CONTAINER,
-  CART_TABLE,
   CHECKOUT_BUTTON,
   BUTTON_CLASSES_PRIMARY,
 } from './styles';
@@ -16,10 +15,10 @@ const Cart = props => {
       <h2 id="cart-title">Cart</h2>
       <CartTable />
       &nbsp; &nbsp;
-      <div style={CHECKOUT_BUTTON}>
+      <div>
         {cart.length !== 0 && (
           <NavLink to="/checkout">
-            <button className={BUTTON_CLASSES_PRIMARY}>CHECKOUT</button>
+            <button className="btn btn-primary btn-block">CHECKOUT</button>
           </NavLink>
         )}
       </div>

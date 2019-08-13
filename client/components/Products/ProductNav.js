@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { PRODUCT_NAV_CONTAINER, ACTIVE_CAT_LINK } from './Styles';
+import { ACTIVE_CAT_LINK } from './Styles';
 
 const ProductNav = props => {
   const { allCategories, params } = props;
@@ -9,13 +9,7 @@ const ProductNav = props => {
     const categoriesArr = [pc1, pc2, pc3];
     // add root level link before all the other links
     const categoryChain = [
-      <NavLink
-        className="text-white"
-        key="cat_0"
-        exact
-        to="/products"
-        activeStyle={ACTIVE_CAT_LINK}
-      >
+      <NavLink key="cat_0" exact to="/products" activeStyle={ACTIVE_CAT_LINK}>
         All Products
       </NavLink>,
     ];
@@ -48,7 +42,7 @@ const ProductNav = props => {
       currentPath += `/${currentCatId}`;
       categoryChain.push(
         <NavLink
-          className="text-white"
+          className=" nav-link-active"
           key={`cat_${i + 1}`}
           exact
           to={currentPath}

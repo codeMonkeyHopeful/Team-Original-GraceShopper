@@ -146,7 +146,6 @@ router.put('/:id', (req, res, next) => {
 // DELETE to api/carts/:id
 // Access: public
 router.delete('/', (req, res, next) => {
-  console.log('user', req.session.user, req.body);
   const { user_id } = req.session.user;
   return Cart.destroy({ where: { userId: user_id } })
     .then(() => {
