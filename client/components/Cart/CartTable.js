@@ -11,7 +11,7 @@ const CartTable = props => {
   }
   let total = 0;
   return (
-    <table id="cartegories">
+    <table id='cartegories'>
       <tbody>
         <tr>
           <th>PRODUCTS</th>
@@ -46,13 +46,13 @@ const CartTable = props => {
           );
         })}
         <tr />
-        <tr height="9px" />
-        <tr id="total-row">
+        <tr height='9px' />
+        <tr id='total-row'>
           <td>
             <b>TOTAL</b>
           </td>
-          <td id="total-middle" />
-          <td id="total-amount">${total.toFixed(2)}</td>
+          <td id='total-middle' />
+          <td id='total-amount'>${total.toFixed(2)}</td>
         </tr>
       </tbody>
     </table>
