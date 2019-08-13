@@ -46,6 +46,7 @@ const SingleProduct = props => {
           <div>
             <label htmlFor="qty">Qty: </label>
             <input
+              className="form-control"
               type="number"
               name="qty"
               value={qty}

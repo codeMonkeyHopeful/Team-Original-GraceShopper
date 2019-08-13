@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { PRODUCT_NAV_CONTAINER, ACTIVE_CAT_LINK } from './Styles';
+import { ACTIVE_CAT_LINK } from './Styles';
 
 const ProductNav = props => {
   const { allCategories, params } = props;
@@ -42,6 +42,7 @@ const ProductNav = props => {
       currentPath += `/${currentCatId}`;
       categoryChain.push(
         <NavLink
+          className=" nav-link-active"
           key={`cat_${i + 1}`}
           exact
           to={currentPath}
@@ -55,7 +56,11 @@ const ProductNav = props => {
     return categoryChain;
   };
 
-  return <div style={PRODUCT_NAV_CONTAINER}>{renderCategoryChain()}</div>;
+  return (
+    <div style={{ lineHeight: '2.5' }} className="nav bg-dark text-white">
+      {renderCategoryChain()}
+    </div>
+  );
 };
 
 export default ProductNav;

@@ -67,7 +67,6 @@ User.authenticate = function(email, password) {
       return Promise.all([comparePw(password, user.password), user]);
     })
     .then(([isValid, user]) => {
-      console.log(user);
       if (isValid) {
         return {
           user_id: user.id,

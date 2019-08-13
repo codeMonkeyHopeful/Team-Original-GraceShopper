@@ -1,10 +1,12 @@
 import axios from 'axios';
 import {
   ADD_TO_CART,
-  GOT_CART,
   CLEAR_CART,
-  INCREASE_CART_QTY,
   DECREASE_CART_QTY,
+  GOT_CART,
+  INCREASE_CART_QTY,
+  REMOVE_FROM_CART,
+  SUBMIT_ORDER,
 } from '../actionCreators/cartCreators';
 
 const initialState = {
@@ -38,6 +40,17 @@ const newCartToReducer = (cart, product, mode, qty = 1) => {
   return { cart: newCart };
 };
 
+const removeProductFromCart = (cart, product) => {
+  const newCart = cart
+    .map(cartProd => {
+      const newProd = Object.assign({}, cartProd);
+      return newProd;
+    })
+    .filter(newCartProd => product.id !== newCartProd.productId);
+  console.log('new', newCart);
+  return { cart: newCart };
+};
+
 const updateCartToDb = cart => {
   return axios
     .post('/api/carts', cart)
@@ -45,6 +58,16 @@ const updateCartToDb = cart => {
       console.log('DB updated cart', cart);
     })
     .catch(() => console.log('Error updating cart to db!'));
+};
+
+const removeCartProductFromDb = product => {
+  return axios
+    .delete('/api/carts', { where: { productId: product.id } })
+    .then(res => res.data)
+    .then(() => {
+      console.log('DB removed product from cart', product);
+    })
+    .catch(() => console.log('Error removing product from cart db!'));
 };
 
 // Reducer
@@ -91,6 +114,25 @@ const cartReducer = (state = initialState, action) => {
       updateCartToDb(updatedCart);
 
       return updatedCart;
+    }
+    case REMOVE_FROM_CART: {
+      const { product } = action;
+      console.log('remove', product);
+      const updatedCart = removeProductFromCart(state.cart, product);
+      console.log('update cart', updatedCart);
+      removeCartProductFromDb(product);
+      updateCartToDb(updatedCart);
+
+      return updatedCart;
+    }
+    case SUBMIT_ORDER: {
+      const { cart } = action.cart;
+      const emptyCart = { cart: [] };
+      // Send cart with submitOrder flag to find and update.
+      updateCartToDb({ cart, submitOrder: true });
+
+      // Return empty cart to state; order placed and processed
+      return emptyCart;
     }
     default:
       return state;

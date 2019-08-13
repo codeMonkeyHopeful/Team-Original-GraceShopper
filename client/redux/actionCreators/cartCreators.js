@@ -6,6 +6,8 @@ export const GOT_CART = 'GOT_CART';
 export const CLEAR_CART = 'CLEAR_CART';
 export const INCREASE_CART_QTY = 'INCREASE_CART_QTY';
 export const DECREASE_CART_QTY = 'DECREASE_CART_QTY';
+export const SUBMIT_ORDER = 'SUBMIT_ORDER';
+export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 
 // action creators
 export const addToCart = (product, qty) => {
@@ -35,6 +37,14 @@ export const decreaseQty = product => {
   return { type: DECREASE_CART_QTY, product };
 };
 
+export const submitOrder = cart => {
+  return { type: SUBMIT_ORDER, cart };
+};
+
+export const removeFromCart = product => {
+  return { type: REMOVE_FROM_CART, product };
+};
+
 // thunks
 export const getCartThunk = beforeLoginCart => {
   return dispatch => {
@@ -42,9 +52,13 @@ export const getCartThunk = beforeLoginCart => {
       .get('/api/carts')
       .then(res => res.data)
       .then(cart => {
-        dispatch(gotCart(cart));
-
-        if (beforeLoginCart.cart.length) {
+        // Only return cart where the order hasn't already been purchased.
+        const notPurchasedOrdersCart = cart.filter(
+          order => order.purchased === false
+        );
+        dispatch(gotCart(notPurchasedOrdersCart));
+        console.log('beforelogincart', beforeLoginCart);
+        if (beforeLoginCart && beforeLoginCart.cart.length) {
           beforeLoginCart.cart.forEach(({ product, qty }) => {
             dispatch(addToCart(product, qty));
           });

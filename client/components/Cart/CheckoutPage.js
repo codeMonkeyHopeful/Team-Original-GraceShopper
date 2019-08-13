@@ -1,8 +1,15 @@
 import React from 'react';
 import CheckoutCartTable from './CheckoutCartTable';
-import { CART_CONTAINER, CART_TABLE, CHECKOUT_BUTTON } from './styles';
+import {
+  CART_CONTAINER,
+  CART_TABLE,
+  CHECKOUT_BUTTON,
+  BUTTON_CLASSES_PRIMARY,
+} from './styles';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { submitOrder } from '../../redux';
+import { withRouter } from 'react-router';
 
 const CheckoutPage = props => {
   const {
@@ -15,13 +22,22 @@ const CheckoutPage = props => {
     phone_number,
   } = props.currentUser.profile;
   const { email } = props.currentUser;
-  console.log('current user', props.currentUser.profile);
+  const { submitOrder, cart, history } = props;
+
+  const phoneNumber = `(${phone_number.slice(0, 3)}) ${phone_number.slice(
+    3,
+    6
+  )}-${phone_number.slice(6)}`;
+
+  console.log('cart in checkout', cart, history);
   return (
     <div style={CART_CONTAINER}>
-      * Please confirm your shipping and contact information are correct *
+      <h5 className="text-center text-danger">
+        * Please confirm your shipping and contact information are correct *
+      </h5>
       <div>&nbsp;</div>
       <div>
-        <h3>SHIPPING INFORMATION</h3>
+        <h4 className="text-info">SHIPPING INFORMATION</h4>
         <div>
           <div>
             {first_name}&nbsp;{last_name}
@@ -30,30 +46,52 @@ const CheckoutPage = props => {
           <div>
             {city},&nbsp;{state} &nbsp;{zipcode}
           </div>
-          <h3>CONTACT INFORMATION</h3>
-          <div>{phone_number}</div>
+          <br />
+          <h4 className="text-info">CONTACT INFORMATION</h4>
+          <div>{phoneNumber}</div>
           <div>{email}</div>
         </div>
       </div>
+      <br />
       <div>
-        <h3>
+        <h5 className="text-center text-danger">
           Please confirm your order is correct before submitting for delivery.
-        </h3>
+        </h5>
         <div>
           <CheckoutCartTable style={CART_TABLE} />
         </div>
         <div>&nbsp;</div>
         <div id="checkout-submit-button" style={CHECKOUT_BUTTON}>
           <NavLink to="/cart">
-            <button>Edit Cart</button>
+            <button className={BUTTON_CLASSES_PRIMARY}>Edit Cart</button>
           </NavLink>
           <div>&nbsp;</div>
-          <button>Submit</button>
+          <button
+            className="btn btn-primary "
+            onClick={() => {
+              submitOrder(cart);
+              history.push('/confirmation');
+            }}
+          >
+            Submit
+          </button>
         </div>
       </div>
     </div>
   );
 };
-const mapState = ({ currentUser }) => ({ currentUser });
 
-export default connect(mapState)(CheckoutPage);
+const mapState = ({ currentUser, cart }) => ({ currentUser, cart });
+
+const mapDispatch = dispatch => ({
+  submitOrder: cart => {
+    dispatch(submitOrder(cart));
+  },
+});
+
+export default withRouter(
+  connect(
+    mapState,
+    mapDispatch
+  )(CheckoutPage)
+);

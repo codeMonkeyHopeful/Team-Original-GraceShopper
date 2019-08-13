@@ -1,7 +1,7 @@
 export const CART_CONTAINER = {
   disply: 'flex',
   justifyContent: 'center',
-  margin: '20px 150px 0 150px',
+  margin: '20px 100px 0 100px',
   fontFamily:
     'Human BBY Web,Arial,Helvetica,Nimbus Sans L,Liberation Sans,FreeSans,sans-serif',
 };
@@ -26,3 +26,5 @@ export const CHECKOUT_BUTTON = {
 export const UPDATE_BUTTONS = {
   borderRadius: '50%',
 };
+
+export const BUTTON_CLASSES_PRIMARY = 'btn btn-primary';
